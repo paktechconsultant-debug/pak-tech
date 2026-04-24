@@ -1,0 +1,2169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pak-Tech Admin Panel</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #0F0F0F;
+            color: #FFFFFF;
+            overflow-x: hidden;
+        }
+
+        /* LOGIN PAGE */
+        .login-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #0F0F0F 0%, #1A1A1A 100%);
+        }
+
+        .login-card {
+            background: #1A1A1A;
+            border: 1px solid #2A2A2A;
+            border-radius: 12px;
+            padding: 40px;
+            width: 100%;
+            max-width: 400px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+        }
+
+        .login-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .login-logo {
+            font-size: 32px;
+            font-weight: 700;
+            color: #C9A84C;
+            margin-bottom: 10px;
+        }
+
+        .login-logo i {
+            margin-right: 8px;
+        }
+
+        .login-subtitle {
+            color: #999;
+            font-size: 14px;
+            margin-top: 10px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            color: #FFFFFF;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px 15px;
+            background: #0F0F0F;
+            border: 1px solid #2A2A2A;
+            border-radius: 6px;
+            color: #FFFFFF;
+            font-family: 'Poppins', sans-serif;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #C9A84C;
+            box-shadow: 0 0 10px rgba(201, 168, 76, 0.2);
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 12px;
+            background: #C9A84C;
+            color: #0F0F0F;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .login-btn:hover {
+            background: #E0C373;
+            transform: translateY(-2px);
+        }
+
+        .login-error {
+            display: none;
+            background: #8B0000;
+            color: #FFFFFF;
+            padding: 12px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            font-size: 14px;
+            border-left: 4px solid #FF6B6B;
+        }
+
+        /* MAIN DASHBOARD */
+        .dashboard-container {
+            display: none;
+            min-height: 100vh;
+            background: #0F0F0F;
+        }
+
+        .dashboard-wrapper {
+            display: flex;
+            height: 100vh;
+        }
+
+        /* SIDEBAR */
+        .sidebar {
+            width: 250px;
+            background: #1A1A1A;
+            border-right: 1px solid #2A2A2A;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            position: fixed;
+            left: 0;
+            top: 0;
+            height: 100vh;
+            overflow-y: auto;
+            z-index: 1000;
+        }
+
+        .sidebar-logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: #C9A84C;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #2A2A2A;
+        }
+
+        .sidebar-nav {
+            flex: 1;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            padding: 12px 15px;
+            margin-bottom: 8px;
+            cursor: pointer;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            color: #999;
+            border-left: 3px solid transparent;
+        }
+
+        .nav-item i {
+            width: 20px;
+            margin-right: 12px;
+        }
+
+        .nav-item:hover {
+            background: #2A2A2A;
+            color: #C9A84C;
+        }
+
+        .nav-item.active {
+            background: rgba(201, 168, 76, 0.1);
+            color: #C9A84C;
+            border-left-color: #C9A84C;
+        }
+
+        .sidebar-footer {
+            border-top: 1px solid #2A2A2A;
+            padding-top: 15px;
+            margin-top: auto;
+        }
+
+        .user-email {
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 10px;
+            word-break: break-all;
+        }
+
+        .logout-btn {
+            width: 100%;
+            padding: 10px;
+            background: #8B0000;
+            color: #FFFFFF;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .logout-btn:hover {
+            background: #B22222;
+        }
+
+        /* MAIN CONTENT */
+        .main-content {
+            margin-left: 250px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+        }
+
+        .top-bar {
+            background: #1A1A1A;
+            border-bottom: 1px solid #2A2A2A;
+            padding: 20px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .top-bar-left {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .page-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #FFFFFF;
+        }
+
+        .page-date {
+            font-size: 12px;
+            color: #666;
+        }
+
+        .view-website-btn {
+            padding: 10px 20px;
+            background: #C9A84C;
+            color: #0F0F0F;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .view-website-btn:hover {
+            background: #E0C373;
+        }
+
+        .content-area {
+            padding: 30px;
+            flex: 1;
+        }
+
+        /* STATS CARDS */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background: #1A1A1A;
+            border: 1px solid #2A2A2A;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            border-color: #C9A84C;
+            transform: translateY(-5px);
+        }
+
+        .stat-icon {
+            font-size: 32px;
+            color: #C9A84C;
+            margin-bottom: 10px;
+        }
+
+        .stat-number {
+            font-size: 32px;
+            font-weight: 700;
+            color: #FFFFFF;
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            font-size: 13px;
+            color: #666;
+            font-weight: 500;
+        }
+
+        /* TABLE */
+        .table-container {
+            background: #1A1A1A;
+            border: 1px solid #2A2A2A;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        thead {
+            background: #0F0F0F;
+            border-bottom: 1px solid #2A2A2A;
+        }
+
+        th {
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 13px;
+            color: #999;
+            text-transform: uppercase;
+        }
+
+        td {
+            padding: 15px;
+            border-bottom: 1px solid #2A2A2A;
+            font-size: 14px;
+            color: #CCCCCC;
+        }
+
+        tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        tbody tr:hover {
+            background: #252525;
+        }
+
+        tbody tr.unread {
+            border-left: 3px solid #C9A84C;
+        }
+
+        /* BUTTONS */
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            font-family: 'Poppins', sans-serif;
+            transition: all 0.3s ease;
+            font-size: 14px;
+        }
+
+        .btn-primary {
+            background: #C9A84C;
+            color: #0F0F0F;
+        }
+
+        .btn-primary:hover {
+            background: #E0C373;
+        }
+
+        .btn-secondary {
+            background: #2A2A2A;
+            color: #FFFFFF;
+        }
+
+        .btn-secondary:hover {
+            background: #333333;
+        }
+
+        .btn-danger {
+            background: #8B0000;
+            color: #FFFFFF;
+        }
+
+        .btn-danger:hover {
+            background: #B22222;
+        }
+
+        .btn-sm {
+            padding: 6px 12px;
+            font-size: 12px;
+        }
+
+        .btn-icon {
+            padding: 8px 12px;
+            background: none;
+            color: #C9A84C;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .btn-icon:hover {
+            color: #E0C373;
+        }
+
+        .btn-icon.danger {
+            color: #8B0000;
+        }
+
+        .btn-icon.danger:hover {
+            color: #B22222;
+        }
+
+        /* ACTION BUTTONS */
+        .action-buttons {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+
+        /* BADGE */
+        .badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .badge-gold {
+            background: rgba(201, 168, 76, 0.2);
+            color: #C9A84C;
+        }
+
+        .badge-gray {
+            background: rgba(100, 100, 100, 0.2);
+            color: #999;
+        }
+
+        /* MODAL */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: #1A1A1A;
+            border: 1px solid #2A2A2A;
+            border-radius: 12px;
+            padding: 30px;
+            width: 90%;
+            max-width: 600px;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #2A2A2A;
+        }
+
+        .modal-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #FFFFFF;
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            color: #999;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        .modal-close:hover {
+            color: #C9A84C;
+        }
+
+        .modal-body {
+            margin-bottom: 20px;
+        }
+
+        .modal-footer {
+            display: flex;
+            gap: 10px;
+            justify-content: flex-end;
+            padding-top: 20px;
+            border-top: 1px solid #2A2A2A;
+        }
+
+        /* FORM */
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #FFFFFF;
+            font-size: 14px;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 10px 15px;
+            background: #0F0F0F;
+            border: 1px solid #2A2A2A;
+            border-radius: 6px;
+            color: #FFFFFF;
+            font-family: 'Poppins', sans-serif;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #C9A84C;
+            box-shadow: 0 0 10px rgba(201, 168, 76, 0.2);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        /* TOGGLE SWITCH */
+        .toggle-switch {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 24px;
+        }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #2A2A2A;
+            transition: 0.3s;
+            border-radius: 24px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 18px;
+            width: 18px;
+            left: 3px;
+            bottom: 3px;
+            background-color: white;
+            transition: 0.3s;
+            border-radius: 50%;
+        }
+
+        input:checked + .slider {
+            background-color: #C9A84C;
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(26px);
+        }
+
+        /* GRID CARDS */
+        .grid-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .card {
+            background: #1A1A1A;
+            border: 1px solid #2A2A2A;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            border-color: #C9A84C;
+            transform: translateY(-5px);
+        }
+
+        .card-actions {
+            display: none;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            gap: 8px;
+            background: #1A1A1A;
+            padding: 5px;
+            border-radius: 6px;
+        }
+
+        .card:hover .card-actions {
+            display: flex;
+        }
+
+        .card-icon {
+            font-size: 48px;
+            margin-bottom: 10px;
+            color: #C9A84C;
+        }
+
+        .card-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #FFFFFF;
+            margin-bottom: 5px;
+        }
+
+        .card-meta {
+            font-size: 12px;
+            color: #666;
+        }
+
+        /* LOADING SPINNER */
+        .loading-overlay {
+            display: none;
+            position: fixed;
+            z-index: 3000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            align-items: center;
+            justify-content: center;
+        }
+
+        .loading-overlay.active {
+            display: flex;
+        }
+
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid #2A2A2A;
+            border-top: 4px solid #C9A84C;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* TOAST */
+        .toast-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 2500;
+        }
+
+        .toast {
+            background: #1A1A1A;
+            border: 1px solid #2A2A2A;
+            border-left: 4px solid #C9A84C;
+            border-radius: 6px;
+            padding: 15px 20px;
+            margin-bottom: 10px;
+            min-width: 300px;
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            animation: slideIn 0.3s ease;
+        }
+
+        .toast.success {
+            border-left-color: #22C55E;
+        }
+
+        .toast.error {
+            border-left-color: #EF4444;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(400px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .toast-icon {
+            font-size: 20px;
+        }
+
+        .toast.success .toast-icon {
+            color: #22C55E;
+        }
+
+        .toast.error .toast-icon {
+            color: #EF4444;
+        }
+
+        .toast-message {
+            flex: 1;
+            color: #FFFFFF;
+            font-size: 14px;
+        }
+
+        .toast-close {
+            background: none;
+            border: none;
+            color: #666;
+            cursor: pointer;
+        }
+
+        /* CONFIRM DIALOG */
+        .confirm-dialog {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            align-items: center;
+            justify-content: center;
+        }
+
+        .confirm-dialog.active {
+            display: flex;
+        }
+
+        .confirm-content {
+            background: #1A1A1A;
+            border: 1px solid #2A2A2A;
+            border-radius: 12px;
+            padding: 30px;
+            text-align: center;
+            max-width: 400px;
+        }
+
+        .confirm-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #FFFFFF;
+            margin-bottom: 10px;
+        }
+
+        .confirm-message {
+            color: #999;
+            margin-bottom: 30px;
+            font-size: 14px;
+        }
+
+        .confirm-buttons {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        /* HAMBURGER MENU */
+        .hamburger {
+            display: none;
+            background: none;
+            border: none;
+            color: #C9A84C;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        /* EMPTY STATE */
+        .empty-state {
+            text-align: center;
+            padding: 40px;
+            color: #666;
+        }
+
+        .empty-state-icon {
+            font-size: 48px;
+            color: #C9A84C;
+            margin-bottom: 15px;
+        }
+
+        .empty-state-title {
+            font-size: 18px;
+            color: #FFFFFF;
+            margin-bottom: 10px;
+        }
+
+        /* SECTIONS */
+        .section {
+            display: none;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 1024px) {
+            .sidebar {
+                width: 200px;
+            }
+
+            .main-content {
+                margin-left: 200px;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                position: fixed;
+                left: 0;
+                top: 0;
+                width: 70%;
+                height: 100vh;
+                transform: translateX(-100%);
+                transition: transform 0.3s ease;
+                z-index: 999;
+            }
+
+            .sidebar.active {
+                transform: translateX(0);
+            }
+
+            .main-content {
+                margin-left: 0;
+            }
+
+            .hamburger {
+                display: block;
+                order: 1;
+            }
+
+            .top-bar {
+                flex-wrap: wrap;
+                gap: 10px;
+            }
+
+            .page-title {
+                order: 2;
+                flex-basis: 100%;
+            }
+
+            .view-website-btn {
+                order: 3;
+                width: 100%;
+            }
+
+            .content-area {
+                padding: 20px;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .grid-cards {
+                grid-template-columns: 1fr;
+            }
+
+            .modal-content {
+                width: 95%;
+                max-height: 95vh;
+            }
+
+            .table-container {
+                overflow-x: auto;
+            }
+
+            table {
+                min-width: 500px;
+            }
+
+            .toast {
+                min-width: calc(100vw - 40px);
+                max-width: 400px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .sidebar {
+                width: 100%;
+            }
+
+            .stats-grid {
+                gap: 10px;
+            }
+
+            .stat-card {
+                padding: 15px;
+            }
+
+            .stat-number {
+                font-size: 24px;
+            }
+
+            .modal-content {
+                padding: 20px;
+            }
+
+            .form-group input,
+            .form-group textarea,
+            .form-group select {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- LOGIN PAGE -->
+    <div class="login-container" id="loginPage">
+        <div class="login-card">
+            <div class="login-header">
+                <div class="login-logo">
+                    <i class="fas fa-crown"></i> PAK-TECH
+                </div>
+                <div class="login-subtitle">Admin Panel</div>
+            </div>
+            <form id="loginForm">
+                <div class="login-error" id="loginError"></div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" placeholder="Enter your email" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" placeholder="Enter your password" required>
+                </div>
+                <button type="submit" class="login-btn">Login to Admin Panel</button>
+                <a href="../index.html" style="
+  display: block;
+  text-align: center;
+  margin-top: 12px;
+  color: rgba(201, 168, 76, 0.6);
+  font-size: 13px;
+  text-decoration: none;
+  transition: color 0.3s ease;
+" onmouseover="this.style.color='#C9A84C'" onmouseout="this.style.color='rgba(201,168,76,0.6)'">
+  ← Back to Website
+</a>
+            </form>
+        </div>
+    </div>
+
+    <!-- DASHBOARD -->
+    <div class="dashboard-container" id="dashboard">
+        <div class="dashboard-wrapper">
+            <!-- SIDEBAR -->
+            <div class="sidebar" id="sidebar">
+                <div class="sidebar-logo">
+                    <i class="fas fa-crown"></i> PAK-TECH
+                </div>
+                <nav class="sidebar-nav">
+                    <div class="nav-item active" data-section="dashboard">
+                        <i class="fas fa-home"></i> Dashboard
+                    </div>
+                    <div class="nav-item" data-section="blog">
+                        <i class="fas fa-file-alt"></i> Blog Posts
+                    </div>
+                    <div class="nav-item" data-section="contact">
+                        <i class="fas fa-envelope"></i> Contact Messages
+                    </div>
+                    <div class="nav-item" data-section="clients">
+                        <i class="fas fa-building"></i> Clients
+                    </div>
+                    <div class="nav-item" data-section="team">
+                        <i class="fas fa-users"></i> Team
+                    </div>
+                </nav>
+                <div class="sidebar-footer">
+                    <div class="user-email" id="userEmail">user@email.com</div>
+                    <button class="logout-btn" id="logoutBtn">
+                        <i class="fas fa-sign-out-alt"></i> Logout
+                    </button>
+                </div>
+            </div>
+
+            <!-- MAIN CONTENT -->
+            <div class="main-content">
+                <div class="top-bar">
+                    <div class="top-bar-left">
+                        <button class="hamburger" id="hamburger">
+                            <i class="fas fa-bars"></i>
+                        </button>
+                        <div class="page-title" id="pageTitle">Dashboard</div>
+                        <div class="page-date" id="pageDate"></div>
+                    </div>
+                    <a href="http://localhost:5500" target="_blank" class="view-website-btn">
+                        <i class="fas fa-external-link-alt"></i> View Website
+                    </a>
+                </div>
+
+                <div class="content-area">
+                    <!-- DASHBOARD SECTION -->
+                    <div class="section active" id="section-dashboard">
+                        <h2 style="margin-bottom: 20px;">Overview</h2>
+                        <div class="stats-grid" id="statsGrid">
+                            <div class="stat-card">
+                                <div class="stat-icon"><i class="fas fa-file-alt"></i></div>
+                                <div class="stat-number" id="blogCount">0</div>
+                                <div class="stat-label">Blog Posts</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-icon"><i class="fas fa-envelope"></i></div>
+                                <div class="stat-number" id="unreadCount">0</div>
+                                <div class="stat-label">Unread Messages</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-icon"><i class="fas fa-building"></i></div>
+                                <div class="stat-number" id="clientsCount">0</div>
+                                <div class="stat-label">Clients</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-icon"><i class="fas fa-users"></i></div>
+                                <div class="stat-number" id="teamCount">0</div>
+                                <div class="stat-label">Team Members</div>
+                            </div>
+                        </div>
+
+                        <h3 style="margin-top: 30px; margin-bottom: 15px;">Recent Messages</h3>
+                        <div class="table-container">
+                            <table id="recentContactsTable">
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Email</th>
+                                        <th>Date</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- BLOG SECTION -->
+                    <div class="section" id="section-blog">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                            <h2>Blog Posts</h2>
+                            <button class="btn btn-primary" id="addBlogBtn">
+                                <i class="fas fa-plus"></i> Add New Post
+                            </button>
+                        </div>
+                        <div class="table-container">
+                            <table id="blogTable">
+                                <thead>
+                                    <tr>
+                                        <th>Title</th>
+                                        <th>Category</th>
+                                        <th>Status</th>
+                                        <th>Date</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- CONTACT SECTION -->
+                    <div class="section" id="section-contact">
+                        <h2 style="margin-bottom: 20px;">Contact Messages</h2>
+                        <div class="table-container">
+                            <table id="contactTable">
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Email</th>
+                                        <th>Date</th>
+                                        <th>Status</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- CLIENTS SECTION -->
+                    <div class="section" id="section-clients">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                            <h2>Clients</h2>
+                            <button class="btn btn-primary" id="addClientBtn">
+                                <i class="fas fa-plus"></i> Add Client
+                            </button>
+                        </div>
+                        <div class="grid-cards" id="clientsGrid"></div>
+                    </div>
+
+                    <!-- TEAM SECTION -->
+                    <div class="section" id="section-team">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                            <h2>Team Members</h2>
+                            <button class="btn btn-primary" id="addTeamBtn">
+                                <i class="fas fa-plus"></i> Add Member
+                            </button>
+                        </div>
+                        <div class="grid-cards" id="teamGrid"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODALS -->
+
+    <!-- BLOG MODAL -->
+    <div class="modal" id="blogModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="blogModalTitle">Add New Post</h3>
+                <button class="modal-close" data-modal="blogModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="blogForm">
+                    <div class="form-group">
+                        <label>Title</label>
+                        <input type="text" id="blogTitle" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Slug</label>
+                        <input type="text" id="blogSlug" readonly>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Category</label>
+                            <select id="blogCategory" required>
+                                <option value="">Select Category</option>
+                                <option value="Engineering">Engineering</option>
+                                <option value="Technology">Technology</option>
+                                <option value="Infrastructure">Infrastructure</option>
+                                <option value="Business">Business</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Read Time</label>
+                            <input type="text" id="blogReadTime" placeholder="e.g., 5 min read" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Excerpt</label>
+                        <textarea id="blogExcerpt" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Content</label>
+                        <textarea id="blogContent" style="min-height: 200px;" required></textarea>
+                    </div>
+                    <div class="form-group toggle-switch">
+                        <label>Published</label>
+                        <label class="switch">
+                            <input type="checkbox" id="blogPublished">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" data-modal="blogModal">Cancel</button>
+                <button class="btn btn-primary" id="saveBlogBtn">Save Post</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- CLIENT MODAL -->
+    <div class="modal" id="clientModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="clientModalTitle">Add Client</h3>
+                <button class="modal-close" data-modal="clientModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="clientForm">
+                    <div class="form-group">
+                        <label>Client Name</label>
+                        <input type="text" id="clientName" required>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Initials</label>
+                            <input type="text" id="clientInitials" maxlength="5" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Industry</label>
+                            <input type="text" id="clientIndustry" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Display Order</label>
+                        <input type="number" id="clientOrder" value="0" min="0" required>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" data-modal="clientModal">Cancel</button>
+                <button class="btn btn-primary" id="saveClientBtn">Save Client</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- TEAM MODAL -->
+    <div class="modal" id="teamModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="teamModalTitle">Add Member</h3>
+                <button class="modal-close" data-modal="teamModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="teamForm">
+                    <div class="form-group">
+                        <label>Name</label>
+                        <input type="text" id="teamName" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Title</label>
+                        <input type="text" id="teamTitle" required>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Initials</label>
+                            <input type="text" id="teamInitials" maxlength="5" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Display Order</label>
+                            <input type="number" id="teamOrder" value="0" min="0" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Bio</label>
+                        <textarea id="teamBio" required></textarea>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Phone</label>
+                            <input type="text" id="teamPhone">
+                        </div>
+                        <div class="form-group">
+                            <label>WhatsApp</label>
+                            <input type="text" id="teamWhatsapp">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" id="teamEmail">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" data-modal="teamModal">Cancel</button>
+                <button class="btn btn-primary" id="saveTeamBtn">Save Member</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MESSAGE MODAL -->
+    <div class="modal" id="messageModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Message Details</h3>
+                <button class="modal-close" data-modal="messageModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div style="margin-bottom: 15px;">
+                    <strong>Name:</strong> <span id="msgName"></span>
+                </div>
+                <div style="margin-bottom: 15px;">
+                    <strong>Email:</strong> <span id="msgEmail"></span>
+                </div>
+                <div style="margin-bottom: 15px;">
+                    <strong>Date:</strong> <span id="msgDate"></span>
+                </div>
+                <div style="margin-bottom: 15px;">
+                    <strong>Message:</strong>
+                </div>
+                <div style="background: #0F0F0F; padding: 15px; border-radius: 6px; margin-bottom: 15px; min-height: 100px;">
+                    <p id="msgContent" style="white-space: pre-wrap; color: #CCCCCC;"></p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-danger" id="deleteMessageBtn">Delete</button>
+                <button class="btn btn-primary" id="markReadBtn">Mark as Read</button>
+                <button class="btn btn-secondary" data-modal="messageModal">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- CONFIRM DIALOG -->
+    <div class="confirm-dialog" id="confirmDialog">
+        <div class="confirm-content">
+            <h3 class="confirm-title">Confirm Delete</h3>
+            <p class="confirm-message" id="confirmMessage">Are you sure you want to delete this item?</p>
+            <div class="confirm-buttons">
+                <button class="btn btn-secondary" id="confirmCancel">Cancel</button>
+                <button class="btn btn-danger" id="confirmDelete">Delete</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- LOADING -->
+    <div class="loading-overlay" id="loading">
+        <div class="spinner"></div>
+    </div>
+
+    <!-- TOAST -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <script>
+        const API_BASE = 'http://localhost:5000/api';
+        let token = localStorage.getItem('paktech_admin_token');
+        let currentEditId = null;
+        let currentEditType = null;
+        let currentDeleteId = null;
+        let currentDeleteType = null;
+        let currentMessageId = null;
+
+        // UTILITY FUNCTIONS
+        function showLoading(show = true) {
+            document.getElementById('loading').classList.toggle('active', show);
+        }
+
+        function showToast(message, type = 'success') {
+            const container = document.getElementById('toastContainer');
+            const toast = document.createElement('div');
+            toast.className = `toast ${type}`;
+
+            const icon = type === 'success' ? 'fas fa-check-circle' : 'fas fa-exclamation-circle';
+            toast.innerHTML = `
+                <i class="fas ${icon} toast-icon"></i>
+                <span class="toast-message">${message}</span>
+            `;
+
+            container.appendChild(toast);
+            setTimeout(() => toast.remove(), 3000);
+        }
+
+        function getHeaders() {
+            return {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json'
+            };
+        }
+
+        function formatDate(dateString) {
+            return new Date(dateString).toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'short',
+                day: 'numeric'
+            });
+        }
+
+        function generateSlug(text) {
+            return text
+                .toLowerCase()
+                .trim()
+                .replace(/[^\w\s-]/g, '')
+                .replace(/[\s_]+/g, '-')
+                .replace(/^-+|-+$/g, '');
+        }
+
+        function generateInitials(text) {
+            return text
+                .split(' ')
+                .map(word => word[0])
+                .join('')
+                .substring(0, 2)
+                .toUpperCase();
+        }
+
+        function showConfirmDialog(message, onConfirm) {
+            document.getElementById('confirmMessage').textContent = message;
+            document.getElementById('confirmDialog').classList.add('active');
+
+            document.getElementById('confirmDelete').onclick = () => {
+                document.getElementById('confirmDialog').classList.remove('active');
+                onConfirm();
+            };
+        }
+
+        // AUTHENTICATION
+        function login(email, password) {
+            showLoading(true);
+            fetch(`${API_BASE}/auth/login`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email, password })
+            })
+            .then(res => res.json())
+            .then(data => {
+                showLoading(false);
+                if (data.success) {
+                    token = data.token;
+                    localStorage.setItem('paktech_admin_token', token);
+                    showLogin(false);
+                    loadDashboard();
+                } else {
+                    showLoginError('Invalid credentials');
+                }
+            })
+            .catch(err => {
+                showLoading(false);
+                showLoginError('Login failed. Please try again.');
+            });
+        }
+
+        function logout() {
+            localStorage.removeItem('paktech_admin_token');
+            token = null;
+            showLogin(true);
+            document.getElementById('loginForm').reset();
+        }
+
+        function showLogin(show = true) {
+            document.getElementById('loginPage').style.display = show ? 'flex' : 'none';
+            document.getElementById('dashboard').style.display = show ? 'none' : 'block';
+        }
+
+        function showLoginError(message) {
+            const errorEl = document.getElementById('loginError');
+            errorEl.textContent = message;
+            errorEl.style.display = 'block';
+            setTimeout(() => {
+                errorEl.style.display = 'none';
+            }, 5000);
+        }
+
+        // MODAL FUNCTIONS
+        function openModal(modalId) {
+            document.getElementById(modalId).classList.add('active');
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.remove('active');
+        }
+
+        // LOAD DATA FUNCTIONS
+        async function loadDashboard() {
+            document.getElementById('userEmail').textContent = 'Admin User';
+            document.getElementById('pageDate').textContent = new Date().toLocaleDateString('en-US', {
+                weekday: 'long',
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
+
+            loadStats();
+            loadRecentContacts();
+        }
+
+        async function loadStats() {
+            try {
+                const [blogRes, contactRes, clientsRes, teamRes] = await Promise.all([
+                    fetch(`${API_BASE}/admin/blog`, { headers: getHeaders() }),
+                    fetch(`${API_BASE}/contact/admin/all`, { headers: getHeaders() }),
+                    fetch(`${API_BASE}/clients`, { headers: getHeaders() }),
+                    fetch(`${API_BASE}/team`, { headers: getHeaders() })
+                ]);
+
+                const blogData = await blogRes.json();
+                const contactData = await contactRes.json();
+                const clientsData = await clientsRes.json();
+                const teamData = await teamRes.json();
+
+                document.getElementById('blogCount').textContent = blogData.count || 0;
+                document.getElementById('clientsCount').textContent = clientsData.count || 0;
+                document.getElementById('teamCount').textContent = teamData.count || 0;
+
+                const unreadCount = contactData.submissions ? contactData.submissions.filter(s => !s.is_read).length : 0;
+                document.getElementById('unreadCount').textContent = unreadCount;
+            } catch (err) {
+                console.error('Error loading stats:', err);
+            }
+        }
+
+        async function loadRecentContacts() {
+            try {
+                const res = await fetch(`${API_BASE}/contact/admin/all`, { headers: getHeaders() });
+                const data = await res.json();
+                const tbody = document.querySelector('#recentContactsTable tbody');
+                tbody.innerHTML = '';
+
+                if (data.submissions && data.submissions.length > 0) {
+                    data.submissions.slice(0, 5).forEach(contact => {
+                        tbody.innerHTML += `
+                            <tr>
+                                <td>${contact.name}</td>
+                                <td>${contact.email}</td>
+                                <td>${formatDate(contact.created_at)}</td>
+                                <td>
+                                    <button class="btn btn-sm btn-secondary" onclick="viewMessage(${contact.id})">
+                                        View
+                                    </button>
+                                </td>
+                            </tr>
+                        `;
+                    });
+                } else {
+                    tbody.innerHTML = '<tr><td colspan="4" style="text-align: center; padding: 40px; color: #666;">No messages yet</td></tr>';
+                }
+            } catch (err) {
+                console.error('Error loading contacts:', err);
+            }
+        }
+
+        async function loadBlogPosts() {
+            showLoading(true);
+            try {
+                const res = await fetch(`${API_BASE}/admin/blog`, { headers: getHeaders() });
+                const data = await res.json();
+                const tbody = document.querySelector('#blogTable tbody');
+                tbody.innerHTML = '';
+
+                if (data.posts && data.posts.length > 0) {
+                    data.posts.forEach(post => {
+                        tbody.innerHTML += `
+                            <tr>
+                                <td>${post.title}</td>
+                                <td><span class="badge badge-gold">${post.category}</span></td>
+                                <td>${post.is_published ? '<span class="badge badge-gold">Published</span>' : '<span class="badge badge-gray">Draft</span>'}</td>
+                                <td>${formatDate(post.created_at)}</td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="btn-icon" onclick="editBlogPost(${post.id})">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button class="btn-icon danger" onclick="deleteBlogPost(${post.id})">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                        `;
+                    });
+                } else {
+                    tbody.innerHTML = '<tr><td colspan="5" style="text-align: center; padding: 40px; color: #666;">No blog posts yet</td></tr>';
+                }
+            } catch (err) {
+                console.error('Error loading blog posts:', err);
+                showToast('Error loading blog posts', 'error');
+            }
+            showLoading(false);
+        }
+
+        async function loadContacts() {
+            showLoading(true);
+            try {
+                const res = await fetch(`${API_BASE}/contact/admin/all`, { headers: getHeaders() });
+                const data = await res.json();
+                const tbody = document.querySelector('#contactTable tbody');
+                tbody.innerHTML = '';
+
+                if (data.submissions && data.submissions.length > 0) {
+                    data.submissions.forEach(contact => {
+                        const unreadClass = !contact.is_read ? 'unread' : '';
+                        tbody.innerHTML += `
+                            <tr class="${unreadClass}">
+                                <td>${contact.name}</td>
+                                <td>${contact.email}</td>
+                                <td>${formatDate(contact.created_at)}</td>
+                                <td>${contact.is_read ? '<span class="badge badge-gray">Read</span>' : '<span class="badge badge-gold">New</span>'}</td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="btn btn-sm btn-secondary" onclick="viewMessage(${contact.id})">View</button>
+                                    </div>
+                                </td>
+                            </tr>
+                        `;
+                    });
+                } else {
+                    tbody.innerHTML = '<tr><td colspan="5" style="text-align: center; padding: 40px; color: #666;">No messages</td></tr>';
+                }
+            } catch (err) {
+                console.error('Error loading contacts:', err);
+                showToast('Error loading contacts', 'error');
+            }
+            showLoading(false);
+        }
+
+        async function loadClients() {
+            showLoading(true);
+            try {
+                const res = await fetch(`${API_BASE}/clients`, { headers: getHeaders() });
+                const data = await res.json();
+                const grid = document.getElementById('clientsGrid');
+                grid.innerHTML = '';
+
+                if (data.clients && data.clients.length > 0) {
+                    data.clients.forEach(client => {
+                        grid.innerHTML += `
+                            <div class="card">
+                                <div class="card-actions">
+                                    <button class="btn-icon" onclick="editClient(${client.id})">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button class="btn-icon danger" onclick="deleteClient(${client.id})">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </div>
+                                <div class="card-icon" style="width: 60px; height: 60px; border-radius: 50%; background: rgba(201, 168, 76, 0.2); display: flex; align-items: center; justify-content: center; margin: 0 auto 10px;">
+                                    ${client.initials}
+                                </div>
+                                <div class="card-title">${client.name}</div>
+                                <div class="card-meta">${client.industry}</div>
+                            </div>
+                        `;
+                    });
+                } else {
+                    grid.innerHTML = '<div style="grid-column: 1/-1; text-align: center; padding: 40px; color: #666;">No clients yet</div>';
+                }
+            } catch (err) {
+                console.error('Error loading clients:', err);
+                showToast('Error loading clients', 'error');
+            }
+            showLoading(false);
+        }
+
+        async function loadTeam() {
+            showLoading(true);
+            try {
+                const res = await fetch(`${API_BASE}/team`, { headers: getHeaders() });
+                const data = await res.json();
+                const grid = document.getElementById('teamGrid');
+                grid.innerHTML = '';
+
+                if (data.team && data.team.length > 0) {
+                    data.team.forEach(member => {
+                        grid.innerHTML += `
+                            <div class="card">
+                                <div class="card-actions">
+                                    <button class="btn-icon" onclick="editTeamMember(${member.id})">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button class="btn-icon danger" onclick="deleteTeamMember(${member.id})">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </div>
+                                <div class="card-icon" style="width: 60px; height: 60px; border-radius: 50%; background: rgba(201, 168, 76, 0.2); display: flex; align-items: center; justify-content: center; margin: 0 auto 10px;">
+                                    ${member.initials}
+                                </div>
+                                <div class="card-title">${member.name}</div>
+                                <div class="card-meta">${member.title}</div>
+                            </div>
+                        `;
+                    });
+                } else {
+                    grid.innerHTML = '<div style="grid-column: 1/-1; text-align: center; padding: 40px; color: #666;">No team members yet</div>';
+                }
+            } catch (err) {
+                console.error('Error loading team:', err);
+                showToast('Error loading team', 'error');
+            }
+            showLoading(false);
+        }
+
+        // BLOG FUNCTIONS
+        function editBlogPost(id) {
+            showLoading(true);
+            fetch(`${API_BASE}/blog/admin/all`, { headers: getHeaders() })
+                .then(res => res.json())
+                .then(data => {
+                    showLoading(false);
+                    const post = data.posts.find(p => p.id === id);
+                    if (post) {
+                        currentEditId = id;
+                        currentEditType = 'blog';
+                        document.getElementById('blogModalTitle').textContent = 'Edit Post';
+                        document.getElementById('blogTitle').value = post.title;
+                        document.getElementById('blogSlug').value = post.slug;
+                        document.getElementById('blogCategory').value = post.category;
+                        document.getElementById('blogExcerpt').value = post.excerpt;
+                        document.getElementById('blogContent').value = post.content;
+                        document.getElementById('blogReadTime').value = post.read_time;
+                        document.getElementById('blogPublished').checked = post.is_published;
+                        openModal('blogModal');
+                    }
+                });
+        }
+
+        function deleteBlogPost(id) {
+            showConfirmDialog('Delete this blog post? This action cannot be undone.', () => {
+                showLoading(true);
+                fetch(`${API_BASE}/blog/${id}`, {
+                    method: 'DELETE',
+                    headers: getHeaders()
+                })
+                .then(res => res.json())
+                .then(data => {
+                    showLoading(false);
+                    if (data.success) {
+                        showToast('Blog post deleted successfully');
+                        loadBlogPosts();
+                        loadStats();
+                    } else {
+                        showToast('Error deleting blog post', 'error');
+                    }
+                });
+            });
+        }
+
+        // CLIENT FUNCTIONS
+        function editClient(id) {
+            showLoading(true);
+            fetch(`${API_BASE}/clients`, { headers: getHeaders() })
+                .then(res => res.json())
+                .then(data => {
+                    showLoading(false);
+                    const client = data.clients.find(c => c.id === id);
+                    if (client) {
+                        currentEditId = id;
+                        currentEditType = 'client';
+                        document.getElementById('clientModalTitle').textContent = 'Edit Client';
+                        document.getElementById('clientName').value = client.name;
+                        document.getElementById('clientInitials').value = client.initials;
+                        document.getElementById('clientIndustry').value = client.industry;
+                        document.getElementById('clientOrder').value = client.display_order;
+                        openModal('clientModal');
+                    }
+                });
+        }
+
+        function deleteClient(id) {
+            showConfirmDialog('Delete this client? This action cannot be undone.', () => {
+                showLoading(true);
+                fetch(`${API_BASE}/clients/admin/${id}`, {
+                    method: 'DELETE',
+                    headers: getHeaders()
+                })
+                .then(res => res.json())
+                .then(data => {
+                    showLoading(false);
+                    if (data.success) {
+                        showToast('Client deleted successfully');
+                        loadClients();
+                        loadStats();
+                    } else {
+                        showToast('Error deleting client', 'error');
+                    }
+                });
+            });
+        }
+
+        // TEAM FUNCTIONS
+        function editTeamMember(id) {
+            showLoading(true);
+            fetch(`${API_BASE}/team`, { headers: getHeaders() })
+                .then(res => res.json())
+                .then(data => {
+                    showLoading(false);
+                    const member = data.team.find(m => m.id === id);
+                    if (member) {
+                        currentEditId = id;
+                        currentEditType = 'team';
+                        document.getElementById('teamModalTitle').textContent = 'Edit Member';
+                        document.getElementById('teamName').value = member.name;
+                        document.getElementById('teamTitle').value = member.title;
+                        document.getElementById('teamBio').value = member.bio;
+                        document.getElementById('teamPhone').value = member.phone || '';
+                        document.getElementById('teamWhatsapp').value = member.whatsapp || '';
+                        document.getElementById('teamEmail').value = member.email || '';
+                        document.getElementById('teamInitials').value = member.initials;
+                        document.getElementById('teamOrder').value = member.display_order;
+                        openModal('teamModal');
+                    }
+                });
+        }
+
+        function deleteTeamMember(id) {
+            showConfirmDialog('Delete this team member? This action cannot be undone.', () => {
+                showLoading(true);
+                fetch(`${API_BASE}/team/admin/${id}`, {
+                    method: 'DELETE',
+                    headers: getHeaders()
+                })
+                .then(res => res.json())
+                .then(data => {
+                    showLoading(false);
+                    if (data.success) {
+                        showToast('Team member deleted successfully');
+                        loadTeam();
+                        loadStats();
+                    } else {
+                        showToast('Error deleting team member', 'error');
+                    }
+                });
+            });
+        }
+
+        // MESSAGE FUNCTIONS
+        function viewMessage(id) {
+            showLoading(true);
+            fetch(`${API_BASE}/contact/admin/all`, { headers: getHeaders() })
+                .then(res => res.json())
+                .then(data => {
+                    showLoading(false);
+                    const message = data.submissions.find(m => m.id === id);
+                    if (message) {
+                        currentMessageId = id;
+                        document.getElementById('msgName').textContent = message.name;
+                        document.getElementById('msgEmail').textContent = message.email;
+                        document.getElementById('msgDate').textContent = formatDate(message.created_at);
+                        document.getElementById('msgContent').textContent = message.message;
+                        openModal('messageModal');
+
+                        if (!message.is_read) {
+                            markAsRead(id, false);
+                        }
+                    }
+                });
+        }
+
+        function markAsRead(id, showMsg = true) {
+            fetch(`${API_BASE}/contact/admin/${id}/read`, {
+                method: 'PUT',
+                headers: getHeaders()
+            })
+            .then(res => res.json())
+            .then(data => {
+                if (data.success && showMsg) {
+                    showToast('Marked as read');
+                    loadContacts();
+                    loadStats();
+                }
+            });
+        }
+
+        function deleteMessage() {
+            if (currentMessageId) {
+                showConfirmDialog('Delete this message? This action cannot be undone.', () => {
+                    showLoading(true);
+                    fetch(`${API_BASE}/contact/admin/${currentMessageId}`, {
+                        method: 'DELETE',
+                        headers: getHeaders()
+                    })
+                    .then(res => res.json())
+                    .then(data => {
+                        showLoading(false);
+                        if (data.success) {
+                            closeModal('messageModal');
+                            showToast('Message deleted successfully');
+                            loadContacts();
+                            loadStats();
+                        } else {
+                            showToast('Error deleting message', 'error');
+                        }
+                    });
+                });
+            }
+        }
+
+        // EVENT LISTENERS
+        document.getElementById('loginForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            login(email, password);
+        });
+
+        document.getElementById('logoutBtn').addEventListener('click', logout);
+
+        document.getElementById('hamburger').addEventListener('click', () => {
+            document.getElementById('sidebar').classList.toggle('active');
+        });
+
+        document.querySelectorAll('.nav-item').forEach(item => {
+            item.addEventListener('click', () => {
+                const section = item.getAttribute('data-section');
+                document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
+                document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+
+                item.classList.add('active');
+                document.getElementById(`section-${section}`).classList.add('active');
+
+                const titles = {
+                    'dashboard': 'Dashboard',
+                    'blog': 'Blog Posts',
+                    'contact': 'Contact Messages',
+                    'clients': 'Clients',
+                    'team': 'Team Members'
+                };
+                document.getElementById('pageTitle').textContent = titles[section];
+
+                document.getElementById('sidebar').classList.remove('active');
+
+                if (section === 'blog') loadBlogPosts();
+                if (section === 'contact') loadContacts();
+                if (section === 'clients') loadClients();
+                if (section === 'team') loadTeam();
+            });
+        });
+
+        document.querySelectorAll('[data-modal]').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const modalId = btn.getAttribute('data-modal');
+                closeModal(modalId);
+                if (modalId === 'blogModal') {
+                    document.getElementById('blogForm').reset();
+                    currentEditId = null;
+                    document.getElementById('blogModalTitle').textContent = 'Add New Post';
+                }
+                if (modalId === 'clientModal') {
+                    document.getElementById('clientForm').reset();
+                    currentEditId = null;
+                    document.getElementById('clientModalTitle').textContent = 'Add Client';
+                }
+                if (modalId === 'teamModal') {
+                    document.getElementById('teamForm').reset();
+                    currentEditId = null;
+                    document.getElementById('teamModalTitle').textContent = 'Add Member';
+                }
+            });
+        });
+
+        document.getElementById('addBlogBtn').addEventListener('click', () => {
+            currentEditId = null;
+            document.getElementById('blogForm').reset();
+            document.getElementById('blogModalTitle').textContent = 'Add New Post';
+            openModal('blogModal');
+        });
+
+        document.getElementById('addClientBtn').addEventListener('click', () => {
+            currentEditId = null;
+            document.getElementById('clientForm').reset();
+            document.getElementById('clientModalTitle').textContent = 'Add Client';
+            openModal('clientModal');
+        });
+
+        document.getElementById('addTeamBtn').addEventListener('click', () => {
+            currentEditId = null;
+            document.getElementById('teamForm').reset();
+            document.getElementById('teamModalTitle').textContent = 'Add Member';
+            openModal('teamModal');
+        });
+
+        document.getElementById('blogTitle').addEventListener('input', (e) => {
+            if (!currentEditId) {
+                document.getElementById('blogSlug').value = generateSlug(e.target.value);
+            }
+        });
+
+        document.getElementById('clientName').addEventListener('input', (e) => {
+            if (!currentEditId) {
+                document.getElementById('clientInitials').value = generateInitials(e.target.value);
+            }
+        });
+
+        document.getElementById('teamName').addEventListener('input', (e) => {
+            if (!currentEditId) {
+                document.getElementById('teamInitials').value = generateInitials(e.target.value);
+            }
+        });
+
+        document.getElementById('saveBlogBtn').addEventListener('click', () => {
+            const title = document.getElementById('blogTitle').value;
+            const slug = document.getElementById('blogSlug').value;
+            const category = document.getElementById('blogCategory').value;
+            const excerpt = document.getElementById('blogExcerpt').value;
+            const content = document.getElementById('blogContent').value;
+            const readTime = document.getElementById('blogReadTime').value;
+            const isPublished = document.getElementById('blogPublished').checked;
+
+            if (!title || !slug || !category || !excerpt || !content || !readTime) {
+                showToast('Please fill all fields', 'error');
+                return;
+            }
+
+            showLoading(true);
+            const url = currentEditId ? `${API_BASE}/blog/${currentEditId}` : `${API_BASE}/blog`;
+            const method = currentEditId ? 'PUT' : 'POST';
+
+            fetch(url, {
+                method,
+                headers: getHeaders(),
+                body: JSON.stringify({ title, slug, category, excerpt, content, readTime, isPublished })
+            })
+            .then(res => res.json())
+            .then(data => {
+                showLoading(false);
+                if (data.success || data.post) {
+                    showToast(currentEditId ? 'Post updated successfully' : 'Post created successfully');
+                    closeModal('blogModal');
+                    loadBlogPosts();
+                    loadStats();
+                } else {
+                    showToast('Error saving post', 'error');
+                }
+            });
+        });
+
+        document.getElementById('saveClientBtn').addEventListener('click', () => {
+            const name = document.getElementById('clientName').value;
+            const initials = document.getElementById('clientInitials').value;
+            const industry = document.getElementById('clientIndustry').value;
+            const displayOrder = parseInt(document.getElementById('clientOrder').value);
+
+            if (!name || !initials || !industry) {
+                showToast('Please fill all fields', 'error');
+                return;
+            }
+
+            showLoading(true);
+            const url = currentEditId ? `${API_BASE}/clients/admin/${currentEditId}` : `${API_BASE}/clients/admin/create`;
+            const method = currentEditId ? 'PUT' : 'POST';
+
+            fetch(url, {
+                method,
+                headers: getHeaders(),
+                body: JSON.stringify({ name, initials, industry, isActive: true, displayOrder })
+            })
+            .then(res => res.json())
+            .then(data => {
+                showLoading(false);
+                if (data.success || data.client) {
+                    showToast(currentEditId ? 'Client updated successfully' : 'Client created successfully');
+                    closeModal('clientModal');
+                    loadClients();
+                    loadStats();
+                } else {
+                    showToast('Error saving client', 'error');
+                }
+            });
+        });
+
+        document.getElementById('saveTeamBtn').addEventListener('click', () => {
+            const name = document.getElementById('teamName').value;
+            const title = document.getElementById('teamTitle').value;
+            const bio = document.getElementById('teamBio').value;
+            const phone = document.getElementById('teamPhone').value;
+            const whatsapp = document.getElementById('teamWhatsapp').value;
+            const email = document.getElementById('teamEmail').value;
+            const initials = document.getElementById('teamInitials').value;
+            const displayOrder = parseInt(document.getElementById('teamOrder').value);
+
+            if (!name || !title || !bio || !initials) {
+                showToast('Please fill required fields', 'error');
+                return;
+            }
+
+            showLoading(true);
+            const url = currentEditId ? `${API_BASE}/team/admin/${currentEditId}` : `${API_BASE}/team/admin/create`;
+            const method = currentEditId ? 'PUT' : 'POST';
+
+            fetch(url, {
+                method,
+                headers: getHeaders(),
+                body: JSON.stringify({ name, title, bio, phone, whatsapp, email, initials, isActive: true, displayOrder })
+            })
+            .then(res => res.json())
+            .then(data => {
+                showLoading(false);
+                if (data.success || data.member) {
+                    showToast(currentEditId ? 'Member updated successfully' : 'Member created successfully');
+                    closeModal('teamModal');
+                    loadTeam();
+                    loadStats();
+                } else {
+                    showToast('Error saving member', 'error');
+                }
+            });
+        });
+
+        document.getElementById('deleteMessageBtn').addEventListener('click', () => {
+            deleteMessage();
+        });
+
+        document.getElementById('markReadBtn').addEventListener('click', () => {
+            if (currentMessageId) {
+                markAsRead(currentMessageId);
+                closeModal('messageModal');
+            }
+        });
+
+        document.getElementById('confirmCancel').addEventListener('click', () => {
+            document.getElementById('confirmDialog').classList.remove('active');
+        });
+
+        // INITIALIZATION
+        if (token) {
+            showLoading(true);
+            fetch(`${API_BASE}/auth/verify`, { headers: getHeaders() })
+                .then(res => res.json())
+                .then(data => {
+                    showLoading(false);
+                    if (data.success) {
+                        showLogin(false);
+                        loadDashboard();
+                    } else {
+                        showLogin(true);
+                    }
+                })
+                .catch(() => {
+                    showLoading(false);
+                    showLogin(true);
+                });
+        } else {
+            showLogin(true);
+        }
+    </script>
+</body>
+</html>

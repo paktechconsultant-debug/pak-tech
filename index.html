@@ -1,0 +1,2432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Pak-Tech Engineering Consultant - Premium Engineering & Technology Solutions in Islamabad, Pakistan">
+    <meta name="keywords" content="Engineering Consultancy, Project Management, Technical Advisory, Web Development, Mobile Apps">
+    <meta property="og:title" content="Pak-Tech Engineering Consultant - Premium Solutions">
+    <meta property="og:description" content="Excellence in Engineering Consultancy and Technology Solutions">
+    <meta property="og:image" content="hh-removebg-preview.png">
+    <title>Pak-Tech Engineering Consultant | Premium Solutions</title>
+
+    <link rel="icon" type="image/png" href="pak.png">
+    <link rel="apple-touch-icon" href="pak.png">
+
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700;800&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --page-bg: #FFFFFF;
+            --section-alt1: #F8F6F1;
+            --section-alt2: #F2F2F2;
+            --gold: #C9A84C;
+            --gold-light: #E8C96A;
+            --gold-dark: #8B6914;
+            --gold-tint: rgba(201, 168, 76, 0.08);
+            --text: #1A1A1A;
+            --text-secondary: #555555;
+            --text-muted: #999999;
+            --card-bg: #FFFFFF;
+            --card-border: rgba(201, 168, 76, 0.25);
+            --card-shadow: rgba(0, 0, 0, 0.08);
+            --nav-bg: #FFFFFF;
+            --nav-border: rgba(201, 168, 76, 0.3);
+            --footer-bg: #1A1A1A;
+            --footer-text: #CCCCCC;
+            --green: #25D366;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            font-weight: 400;
+            font-size: 16px;
+            color: var(--text);
+            background-color: var(--page-bg);
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            color: var(--text);
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+        }
+
+        h2 {
+            font-size: clamp(1.8rem, 3vw, 2.5rem);
+        }
+
+        .display-title {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+        }
+
+        a {
+            color: var(--gold);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: var(--gold-dark);
+        }
+
+        /* ===== PRELOADER ===== */
+        .preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: #FFFFFF;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            animation: fadeOut 1.5s ease forwards;
+        }
+
+        .preloader-bar {
+            width: 60px;
+            height: 3px;
+            background: var(--gold);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .preloader-bar::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            height: 100%;
+            width: 100%;
+            background: linear-gradient(90deg, transparent, var(--gold-light), transparent);
+            animation: loadBar 1s ease-in-out infinite;
+        }
+
+        @keyframes loadBar {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        @keyframes fadeOut {
+            0% { opacity: 1; pointer-events: auto; }
+            95% { opacity: 1; }
+            100% { opacity: 0; pointer-events: none; }
+        }
+
+        /* ===== NAVBAR ===== */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: var(--nav-bg);
+            border-bottom: 1px solid var(--nav-border);
+            z-index: 1000;
+            transition: box-shadow 0.3s ease;
+            padding: 1rem 0;
+        }
+
+        nav.scrolled {
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            min-height: 80px;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-img {
+            height: 65px;
+            width: auto;
+            object-fit: contain;
+            display: block;
+        }
+
+        footer .logo-img {
+            height: 50px;
+        }
+
+        .logo-section img {
+            height: 52px;
+            width: auto;
+            filter: drop-shadow(0 2px 8px rgba(201, 168, 76, 0.5));
+        }
+
+        .company-name {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .company-name-main {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 18px;
+            letter-spacing: 1px;
+            color: var(--text);
+        }
+
+        .company-name-sub {
+            font-family: 'Poppins', sans-serif;
+            font-size: 10px;
+            letter-spacing: 0.5px;
+            color: var(--gold);
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 40px;
+            align-items: center;
+            visibility: visible;
+            opacity: 1;
+        }
+
+        nav a {
+            font-family: 'Poppins', sans-serif;
+            color: #555555;
+            font-size: 15px;
+            font-weight: 500;
+            position: relative;
+            padding-bottom: 4px;
+            text-decoration: none;
+            visibility: visible;
+            opacity: 1;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 6px;
+            background: var(--gold);
+            border-radius: 3px;
+            transition: width 0.3s ease;
+            opacity: 0;
+        }
+
+        nav a:hover::after,
+        nav a.active::after {
+            width: 6px;
+            opacity: 1;
+        }
+
+        nav a:hover {
+            color: var(--gold);
+        }
+
+        .phone-btn {
+            background: transparent;
+            border: 2px solid var(--gold);
+            color: var(--gold);
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .phone-btn:hover {
+            background: var(--gold);
+            color: #FFFFFF;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+        }
+
+        .hamburger span {
+            width: 24px;
+            height: 2px;
+            background: var(--gold);
+            transition: 0.3s ease;
+        }
+
+        /* ===== HERO SECTION ===== */
+        .hero {
+            min-height: 100vh;
+            background: var(--page-bg);
+            position: relative;
+            overflow: hidden;
+            padding-top: 80px;
+            display: flex;
+            align-items: center;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image:
+                linear-gradient(45deg, transparent 30%, rgba(201,168,76,0.06) 31%, rgba(201,168,76,0.06) 32%, transparent 33%),
+                linear-gradient(-45deg, transparent 30%, rgba(201,168,76,0.06) 31%, rgba(201,168,76,0.06) 32%, transparent 33%);
+            background-size: 80px 80px;
+            background-position: 0 0, 40px 40px;
+            opacity: 0.5;
+            pointer-events: none;
+        }
+
+        .hero-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-content h1 {
+            font-size: 4.5rem;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 600;
+            letter-spacing: -1px;
+        }
+
+        .hero-content .gold-accent {
+            color: var(--gold);
+            display: inline-block;
+            position: relative;
+        }
+
+        .hero-content .gold-accent::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--gold);
+            animation: slideInLeft 0.8s ease 0.4s forwards;
+            opacity: 0;
+        }
+
+        .hero-label {
+            display: inline-block;
+            margin-bottom: 30px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid var(--gold);
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--gold);
+            animation: fadeInDown 0.6s ease;
+        }
+
+        .hero-content p {
+            font-size: 18px;
+            color: var(--text-secondary);
+            margin-bottom: 40px;
+            line-height: 1.8;
+            animation: fadeInUp 0.8s ease 0.2s forwards;
+            opacity: 0;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 60px;
+            animation: fadeInUp 0.8s ease 0.3s forwards;
+            opacity: 0;
+        }
+
+        .cta-primary {
+            font-family: 'Poppins', sans-serif;
+            background: var(--gold);
+            color: #FFFFFF;
+            padding: 14px 32px;
+            border-radius: 4px;
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .cta-primary:hover {
+            transform: scale(1.03);
+            box-shadow: 0 8px 24px rgba(201, 168, 76, 0.3);
+        }
+
+        .cta-secondary {
+            font-family: 'Poppins', sans-serif;
+            background: transparent;
+            color: var(--gold);
+            padding: 14px 32px;
+            border: 2px solid var(--gold);
+            border-radius: 4px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .cta-secondary:hover {
+            background: var(--gold);
+            color: #FFFFFF;
+            transform: scale(1.03);
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+        }
+
+        .scroll-indicator i {
+            font-size: 24px;
+            color: var(--gold);
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(-10px); }
+        }
+
+        .hero-visual {
+            position: relative;
+            height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .geometric-shape {
+            width: 350px;
+            height: 350px;
+            position: relative;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(2deg); }
+        }
+
+        .shape-1 {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border: 2px solid var(--gold);
+            transform: rotate(45deg);
+        }
+
+        .shape-2 {
+            position: absolute;
+            width: 80%;
+            height: 80%;
+            border: 2px solid rgba(201, 168, 76, 0.4);
+            top: 10%;
+            left: 10%;
+            transform: rotate(-45deg);
+        }
+
+        .shape-3 {
+            position: absolute;
+            width: 60%;
+            height: 60%;
+            border: 2px solid rgba(201, 168, 76, 0.2);
+            top: 20%;
+            left: 20%;
+        }
+
+        /* ===== STATS BAR ===== */
+        .stats-bar {
+            background: var(--gold);
+            color: #FFFFFF;
+            padding: 40px 0;
+            margin: 0;
+        }
+
+        .stats-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            text-align: center;
+        }
+
+        .stat-item h3 {
+            font-size: 32px;
+            font-weight: 700;
+            color: #FFFFFF;
+            margin-bottom: 8px;
+            font-family: 'Rajdhani', sans-serif;
+        }
+
+        .stat-item p {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 500;
+        }
+
+        /* ===== SECTIONS BASE ===== */
+        section {
+            padding: 80px 40px;
+        }
+
+        .section-header {
+            margin-bottom: 60px;
+            position: relative;
+        }
+
+        .section-label {
+            display: inline-block;
+            font-family: 'Poppins', sans-serif;
+            font-size: 12px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 600;
+            color: var(--gold);
+            margin-bottom: 12px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .section-label::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 8px;
+            height: 8px;
+            background: var(--gold);
+            border-radius: 2px;
+            animation: slideInLeft 0.6s ease;
+        }
+
+        .section-title {
+            font-size: clamp(1.8rem, 3vw, 2.5rem);
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--text);
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background: var(--gold);
+            margin-top: 16px;
+            animation: slideInLeft 0.8s ease 0.2s forwards;
+            opacity: 0;
+        }
+
+        .section-description {
+            font-size: 16px;
+            color: var(--text-secondary);
+            max-width: 600px;
+            line-height: 1.8;
+        }
+
+        /* ===== ABOUT SECTION ===== */
+        .about {
+            background: var(--section-alt1);
+        }
+
+        .about-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .about-content h3 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            margin-top: 30px;
+        }
+
+        .about-content h3:first-of-type {
+            margin-top: 0;
+        }
+
+        .about-content p {
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+            line-height: 1.8;
+        }
+
+        .about-checklist {
+            list-style: none;
+            margin-top: 24px;
+            margin-bottom: 24px;
+        }
+
+        .about-checklist li {
+            padding-left: 28px;
+            position: relative;
+            margin-bottom: 12px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .about-checklist li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--gold);
+            font-weight: 700;
+            font-size: 18px;
+        }
+
+        .about-badge {
+            display: inline-block;
+            background: #FFFFFF;
+            padding: 20px 24px;
+            border-radius: 4px;
+            border-left: 4px solid var(--gold);
+            margin-top: 30px;
+            box-shadow: 0 2px 8px var(--card-shadow);
+        }
+
+        .about-badge p {
+            font-weight: 600;
+            font-size: 14px;
+            margin: 0;
+        }
+
+        .about-visual {
+            position: relative;
+            height: 400px;
+        }
+
+        .bracket-box {
+            position: absolute;
+            width: 90%;
+            height: 90%;
+            border: 2px solid var(--gold);
+            top: 5%;
+            left: 5%;
+        }
+
+        .bracket {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            border: 2px solid var(--gold);
+        }
+
+        .bracket-tl {
+            top: -8px;
+            left: -8px;
+            border-right: none;
+            border-bottom: none;
+        }
+
+        .bracket-tr {
+            top: -8px;
+            right: -8px;
+            border-left: none;
+            border-bottom: none;
+        }
+
+        .bracket-bl {
+            bottom: -8px;
+            left: -8px;
+            border-right: none;
+            border-top: none;
+        }
+
+        .bracket-br {
+            bottom: -8px;
+            right: -8px;
+            border-left: none;
+            border-top: none;
+        }
+
+        .tagline-box {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            z-index: 2;
+        }
+
+        .tagline-box p {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--text);
+            max-width: 300px;
+            line-height: 1.6;
+        }
+
+        /* ===== SERVICES SECTION ===== */
+        .services {
+            background: var(--page-bg);
+        }
+
+        .services-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+        }
+
+        .service-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-top: 3px solid var(--gold);
+            border-radius: 4px;
+            padding: 32px 24px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            box-shadow: 0 2px 8px var(--card-shadow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 3px;
+            height: 0;
+            background: var(--gold);
+            transition: height 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 32px rgba(201, 168, 76, 0.2);
+        }
+
+        .service-card:hover .service-icon {
+            color: var(--gold-light);
+        }
+
+        .service-icon {
+            font-size: 2.5rem;
+            color: var(--gold);
+            margin-bottom: 16px;
+            transition: color 0.3s ease;
+        }
+
+        .service-card h3 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 18px;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+
+        .service-card p {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .service-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--gold);
+            font-weight: 600;
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .service-link:hover {
+            gap: 12px;
+            color: var(--gold-dark);
+        }
+
+        /* ===== SERVICE DRAWER ===== */
+        .service-drawer {
+            position: fixed;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            width: 450px;
+            background: var(--page-bg);
+            box-shadow: -4px 0 24px rgba(0, 0, 0, 0.1);
+            z-index: 2000;
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+            overflow-y: auto;
+        }
+
+        .service-drawer.active {
+            transform: translateX(0);
+        }
+
+        .drawer-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.3);
+            opacity: 0;
+            pointer-events: none;
+            z-index: 1999;
+            transition: opacity 0.3s ease;
+        }
+
+        .drawer-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .drawer-header {
+            background: var(--gold);
+            color: #FFFFFF;
+            padding: 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .drawer-header h2 {
+            color: #FFFFFF;
+            font-size: 20px;
+            margin: 0;
+        }
+
+        .drawer-close {
+            background: none;
+            border: none;
+            color: #FFFFFF;
+            font-size: 24px;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .drawer-close:hover {
+            transform: rotate(90deg);
+        }
+
+        .drawer-content {
+            padding: 40px 24px;
+        }
+
+        .drawer-content p {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 16px;
+        }
+
+        /* ===== TEAM SECTION ===== */
+        .team {
+            background: var(--section-alt1);
+        }
+
+        .team-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .team-card {
+            background: var(--card-bg);
+            border-radius: 4px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px var(--card-shadow);
+            transition: all 0.3s ease;
+            border: 1px solid var(--card-border);
+        }
+
+        .team-card:hover {
+            box-shadow: 0 12px 32px rgba(201, 168, 76, 0.2);
+            border-left: 4px solid var(--gold);
+        }
+
+        .team-card-content {
+            display: flex;
+            gap: 24px;
+            padding: 32px;
+        }
+
+        .team-avatar {
+            width: 100px;
+            height: 100px;
+            min-width: 100px;
+            background: var(--gold);
+            border: 2px solid var(--gold);
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #FFFFFF;
+            font-size: 36px;
+            font-weight: 700;
+            font-family: 'Rajdhani', sans-serif;
+        }
+
+        .team-info h3 {
+            font-size: 22px;
+            margin-bottom: 4px;
+        }
+
+        .team-info .role {
+            color: var(--gold);
+            font-weight: 600;
+            font-size: 13px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+
+        .team-info p {
+            color: var(--text-secondary);
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        /* ===== BLOG SECTION ===== */
+        .blog {
+            background: var(--page-bg);
+        }
+
+        .blog-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .blog-grid {
+            display: grid;
+            grid-template-columns: 1.6fr 1fr;
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .blog-featured {
+            background: var(--card-bg);
+            border-radius: 4px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px var(--card-shadow);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .blog-featured:hover {
+            box-shadow: 0 12px 32px rgba(201, 168, 76, 0.15);
+        }
+
+        .blog-image {
+            height: 280px;
+            background: linear-gradient(135deg, var(--gold), var(--gold-light));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255, 255, 255, 0.3);
+            font-size: 80px;
+        }
+
+        .blog-content {
+            padding: 32px;
+        }
+
+        .blog-tag {
+            display: inline-block;
+            background: var(--gold);
+            color: #FFFFFF;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .blog-date {
+            color: var(--text-muted);
+            font-size: 12px;
+            font-weight: 500;
+            margin-bottom: 12px;
+        }
+
+        .blog-featured h3 {
+            font-size: 20px;
+            margin-bottom: 16px;
+            transition: color 0.3s ease;
+        }
+
+        .blog-featured:hover h3 {
+            color: var(--gold);
+        }
+
+        .blog-featured p {
+            color: var(--text-secondary);
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .blog-small {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .blog-card-small {
+            background: var(--card-bg);
+            border-radius: 4px;
+            padding: 20px;
+            border: 1px solid var(--card-border);
+            box-shadow: 0 2px 8px var(--card-shadow);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .blog-card-small:hover {
+            box-shadow: 0 8px 24px rgba(201, 168, 76, 0.15);
+        }
+
+        .blog-card-small h4 {
+            font-size: 16px;
+            margin-bottom: 8px;
+            transition: color 0.3s ease;
+        }
+
+        .blog-card-small:hover h4 {
+            color: var(--gold);
+        }
+
+        .blog-card-small .blog-date {
+            margin-bottom: 12px;
+        }
+
+        /* ===== CLIENTS SECTION ===== */
+        .clients {
+            background: var(--section-alt1);
+        }
+
+        .clients-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .marquee-wrapper {
+            overflow: hidden;
+            margin-top: 40px;
+            margin-bottom: 30px;
+        }
+
+        .marquee {
+            display: flex;
+            gap: 24px;
+            animation: scroll 30s linear infinite;
+            will-change: transform;
+        }
+
+        .marquee:hover {
+            animation-play-state: paused;
+        }
+
+        .marquee-item {
+            min-width: 200px;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 4px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 2px 8px var(--card-shadow);
+        }
+
+        .client-circle {
+            width: 60px;
+            height: 60px;
+            background: var(--gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #FFFFFF;
+            font-weight: 700;
+            font-size: 18px;
+            margin: 0 auto 12px;
+        }
+
+        .marquee-item p {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text);
+            line-height: 1.4;
+        }
+
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-100%); }
+        }
+
+        .marquee-row2 {
+            animation: scroll-reverse 30s linear infinite;
+            margin-top: 20px;
+        }
+
+        @keyframes scroll-reverse {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(0); }
+        }
+
+        /* ===== APPROACH SECTION ===== */
+        .approach {
+            background: var(--page-bg);
+        }
+
+        .approach-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .approach-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 60px;
+            margin-top: 60px;
+            position: relative;
+        }
+
+        .approach-item {
+            position: relative;
+            padding-top: 40px;
+        }
+
+        .approach-number {
+            font-size: 120px;
+            font-weight: 700;
+            color: rgba(201, 168, 76, 0.1);
+            position: absolute;
+            top: -20px;
+            left: 0;
+            font-family: 'Rajdhani', sans-serif;
+            z-index: 1;
+        }
+
+        .approach-item h3 {
+            font-size: 22px;
+            margin-bottom: 16px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .approach-item p {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            font-size: 15px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .approach-divider {
+            position: absolute;
+            top: 20px;
+            left: 0;
+            right: 0;
+            height: 1px;
+            border-top: 1px dotted var(--gold);
+            display: none;
+        }
+
+        .approach-grid.desktop .approach-divider {
+            display: block;
+        }
+
+        /* ===== CONTACT SECTION ===== */
+        .contact {
+            background: var(--section-alt1);
+        }
+
+        .contact-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            margin-top: 40px;
+        }
+
+        .contact-info-cards {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+
+        .contact-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 4px;
+            padding: 24px;
+            display: flex;
+            gap: 16px;
+            align-items: flex-start;
+            box-shadow: 0 2px 8px var(--card-shadow);
+        }
+
+        .contact-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--gold-tint);
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gold);
+            font-size: 20px;
+            min-width: 48px;
+        }
+
+        .contact-text h4 {
+            font-size: 14px;
+            color: var(--gold);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 6px;
+            font-weight: 600;
+        }
+
+        .contact-text p {
+            color: var(--text);
+            font-size: 15px;
+            font-weight: 500;
+            margin: 0;
+        }
+
+        .contact-text a {
+            color: var(--text);
+            word-break: break-all;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 6px;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            background: var(--card-bg);
+            border: none;
+            border-bottom: 2px solid var(--card-border);
+            padding: 12px 0;
+            font-family: 'DM Sans', sans-serif;
+            color: var(--text);
+            font-size: 15px;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: var(--text-muted);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-bottom-color: var(--gold);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .submit-btn {
+            background: var(--gold);
+            color: #FFFFFF;
+            padding: 14px 32px;
+            border: none;
+            border-radius: 4px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-size: 15px;
+            align-self: flex-start;
+            margin-top: 20px;
+        }
+
+        .submit-btn:hover {
+            transform: scale(1.03);
+            box-shadow: 0 8px 24px rgba(201, 168, 76, 0.3);
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: var(--footer-bg);
+            color: var(--footer-text);
+            padding: 60px 40px 30px;
+            border-top: 1px solid rgba(201, 168, 76, 0.2);
+        }
+
+        .footer-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 60px;
+            margin-bottom: 40px;
+        }
+
+        .footer-col h4 {
+            color: var(--gold);
+            font-size: 14px;
+            margin-bottom: 16px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .footer-col a {
+            display: block;
+            margin-bottom: 8px;
+            color: #AAAAAA;
+            font-size: 14px;
+            transition: color 0.3s ease;
+        }
+
+        .footer-col a:hover {
+            color: var(--gold);
+        }
+
+        .footer-col p {
+            color: #AAAAAA;
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 12px;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 12px;
+            margin-top: 16px;
+        }
+
+        .social-icons a {
+            width: 36px;
+            height: 36px;
+            background: rgba(201, 168, 76, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #AAAAAA;
+            transition: all 0.3s ease;
+            margin-bottom: 0;
+        }
+
+        .social-icons a:hover {
+            background: var(--gold);
+            color: var(--footer-bg);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(201, 168, 76, 0.2);
+            padding-top: 20px;
+            text-align: center;
+            color: #999999;
+            font-size: 13px;
+        }
+
+        /* ===== FLOATING BUTTONS ===== */
+        .whatsapp-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: var(--green);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #FFFFFF;
+            font-size: 28px;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
+            transition: all 0.3s ease;
+            z-index: 998;
+            text-decoration: none;
+        }
+
+        .whatsapp-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 24px rgba(37, 211, 102, 0.4);
+        }
+
+        .back-to-top {
+            position: fixed;
+            bottom: 100px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: var(--gold);
+            border-radius: 50%;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            color: #FFFFFF;
+            font-size: 20px;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(201, 168, 76, 0.3);
+            transition: all 0.3s ease;
+            z-index: 997;
+        }
+
+        .back-to-top.show {
+            display: flex;
+        }
+
+        .back-to-top:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 24px rgba(201, 168, 76, 0.4);
+        }
+
+        /* ===== ANIMATIONS ===== */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .fade-up {
+            animation: fadeInUp 0.6s ease forwards;
+            opacity: 0;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 1200px) {
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .approach-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-container {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-visual {
+                display: none;
+            }
+
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .blog-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+
+            .about-container {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-container {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-container {
+                padding: 0 20px;
+            }
+
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 80px;
+                left: 0;
+                right: 0;
+                flex-direction: column;
+                gap: 20px;
+                padding: 20px;
+                background: var(--nav-bg);
+                border-bottom: 1px solid var(--nav-border);
+            }
+
+            .phone-btn {
+                display: none;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .display-title {
+                font-size: 2rem;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-container {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+
+            section {
+                padding: 60px 20px;
+            }
+
+            .service-drawer {
+                width: 100%;
+            }
+
+            .hero-cta {
+                flex-direction: column;
+            }
+
+            .cta-primary,
+            .cta-secondary {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .footer-container {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-content h1 {
+                font-size: 1.8rem;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+            }
+
+            .stats-container {
+                grid-template-columns: 1fr;
+            }
+
+            .marquee-item {
+                min-width: 150px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- PRELOADER -->
+    <div class="preloader">
+        <div class="preloader-bar"></div>
+    </div>
+
+    <!-- NAVBAR -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <div class="logo-section">
+                <img src="pak.png" alt="Pak-Tech Logo" class="logo-img">
+                <div class="company-name">
+                    <div class="company-name-main">PAK-TECH</div>
+                    <div class="company-name-sub">Engineering Consultants (PVT) Ltd</div>
+                </div>
+            </div>
+            <ul id="nav-menu">
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#services" class="nav-link">Services</a></li>
+                <li><a href="#team" class="nav-link">Team</a></li>
+                <li><a href="#blog" class="nav-link">Blog</a></li>
+                <li><a href="#clients" class="nav-link">Clients</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+            <a href="https://wa.me/923709440611" target="_blank" class="phone-btn">+92 370 9440611</a>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section class="hero" id="home">
+        <div class="hero-container">
+            <div class="hero-content">
+                <div class="hero-label">Welcome to Pak-Tech</div>
+                <h1>Engineering<br><span class="gold-accent">Excellence,</span><br>Delivered.</h1>
+                <p>We bring together deep industry expertise and cutting-edge technology to deliver smart engineering solutions. From strategic planning to on-ground execution — Pak-Tech is your trusted partner.</p>
+                <div class="hero-cta">
+                    <button class="cta-primary" onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})">
+                        Get a Consultation →
+                    </button>
+                    <button class="cta-secondary" onclick="document.getElementById('services').scrollIntoView({behavior: 'smooth'})">
+                        Explore Services
+                    </button>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="geometric-shape">
+                    <div class="shape-1"></div>
+                    <div class="shape-2"></div>
+                    <div class="shape-3"></div>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <i class="fas fa-chevron-down"></i>
+        </div>
+    </section>
+
+    <!-- STATS BAR -->
+    <div class="stats-bar">
+        <div class="stats-container">
+            <div class="stat-item">
+                <h3><span class="stat-count" data-target="25">0</span>+</h3>
+                <p>Projects Completed</p>
+            </div>
+            <div class="stat-item">
+                <h3><span class="stat-count" data-target="9">0</span>+</h3>
+                <p>Trusted Clients</p>
+            </div>
+            <div class="stat-item">
+                <h3><span class="stat-count" data-target="2">0</span></h3>
+                <p>Expert Directors</p>
+            </div>
+            <div class="stat-item">
+                <h3><span class="stat-count" data-target="2025">0</span></h3>
+                <p>Year Established</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ABOUT SECTION -->
+    <section class="about" id="about">
+        <div class="about-container">
+            <div class="about-content">
+                <div class="section-header">
+                    <div class="section-label">About Us</div>
+                    <h2 class="section-title">Who We Are</h2>
+                </div>
+                <h3>Engineering Excellence Since 2025</h3>
+                <p>Pak-Tech Engineering Consultant (Pvt) Ltd is a forward-thinking consultancy firm established in 2025, headquartered in Islamabad, Pakistan. We specialize in providing high-quality engineering, technology, and business consultancy services to corporate, public, and private sector clients.</p>
+                <p>Our team brings together seasoned professionals and young talent — united by a passion for precision, innovation, and results. Whether it is a complex infrastructure project or a digital transformation goal, we deliver solutions that create lasting impact.</p>
+
+                <h3>Our Strengths</h3>
+                <ul class="about-checklist">
+                    <li>Licensed Engineering Consultancy Firm</li>
+                    <li>Serving Corporate & Public Sector Clients</li>
+                    <li>Technology-Driven Solutions</li>
+                    <li>Based in Islamabad — Serving Nationwide</li>
+                </ul>
+
+                <div class="about-badge">
+                    <p><strong>Founded 2025 · Islamabad, Pakistan</strong></p>
+                </div>
+            </div>
+            <div class="about-visual">
+                <div class="bracket bracket-tl"></div>
+                <div class="bracket bracket-tr"></div>
+                <div class="bracket bracket-bl"></div>
+                <div class="bracket bracket-br"></div>
+                <div class="bracket-box"></div>
+                <div class="tagline-box">
+                    <p>"Precision. Innovation. Excellence."</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVICES SECTION -->
+    <section class="services" id="services">
+        <div class="services-grid">
+            <div style="grid-column: 1 / -1;">
+                <div class="section-header">
+                    <div class="section-label">What We Do</div>
+                    <h2 class="section-title">Our Services</h2>
+                    <p class="section-description">We offer a comprehensive range of engineering, technology, and consultancy services tailored to meet your business needs.</p>
+                </div>
+            </div>
+            <div class="service-card" onclick="openServiceDrawer('service1')">
+                <i class="fas fa-users service-icon"></i>
+                <h3>Human Resource Management</h3>
+                <p>Strategic HR solutions covering recruitment, payroll, compliance, and employee development.</p>
+                <span class="service-link">View Details <i class="fas fa-arrow-right"></i></span>
+            </div>
+            <div class="service-card" onclick="openServiceDrawer('service2')">
+                <i class="fas fa-calculator service-icon"></i>
+                <h3>Accountancy & Audit Services</h3>
+                <p>Accurate financial reporting, bookkeeping, and independent audits aligned with international standards.</p>
+                <span class="service-link">View Details <i class="fas fa-arrow-right"></i></span>
+            </div>
+            <div class="service-card" onclick="openServiceDrawer('service3')">
+                <i class="fas fa-laptop-code service-icon"></i>
+                <h3>Information Technology Consulting</h3>
+                <p>Smart IT strategies to modernize your operations, infrastructure, and digital capabilities.</p>
+                <span class="service-link">View Details <i class="fas fa-arrow-right"></i></span>
+            </div>
+            <div class="service-card" onclick="openServiceDrawer('service4')">
+                <i class="fas fa-chart-line service-icon"></i>
+                <h3>Financial & Management Services</h3>
+                <p>Expert financial planning, budgeting, forecasting, and management advisory for smarter decisions.</p>
+                <span class="service-link">View Details <i class="fas fa-arrow-right"></i></span>
+            </div>
+            <div class="service-card" onclick="openServiceDrawer('service5')">
+                <i class="fas fa-building service-icon"></i>
+                <h3>Corporate & Non-Profit Advisory</h3>
+                <p>Governance, compliance, and strategic advisory for both corporate and non-profit organizations.</p>
+                <span class="service-link">View Details <i class="fas fa-arrow-right"></i></span>
+            </div>
+            <div class="service-card" onclick="openServiceDrawer('service6')">
+                <i class="fas fa-globe service-icon"></i>
+                <h3>Social Sectors R&D Support</h3>
+                <p>Research-based consultancy and development support for social, public, and donor-funded projects.</p>
+                <span class="service-link">View Details <i class="fas fa-arrow-right"></i></span>
+            </div>
+            <div class="service-card" onclick="openServiceDrawer('service7')">
+                <i class="fas fa-code service-icon"></i>
+                <h3>Web Development</h3>
+                <p>Modern, responsive, and SEO-optimized websites built to grow your online presence.</p>
+                <span class="service-link">View Details <i class="fas fa-arrow-right"></i></span>
+            </div>
+            <div class="service-card" onclick="openServiceDrawer('service8')">
+                <i class="fas fa-mobile-alt service-icon"></i>
+                <h3>Mobile App Development</h3>
+                <p>Custom Android and iOS applications designed to elevate your business and engage your users.</p>
+                <span class="service-link">View Details <i class="fas fa-arrow-right"></i></span>
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVICE DRAWER -->
+    <div class="drawer-overlay" id="drawer-overlay" onclick="closeServiceDrawer()"></div>
+    <div class="service-drawer" id="service-drawer">
+        <div class="drawer-header">
+            <h2 id="drawer-title"></h2>
+            <button class="drawer-close" onclick="closeServiceDrawer()">×</button>
+        </div>
+        <div class="drawer-content" id="drawer-content"></div>
+    </div>
+
+    <!-- TEAM SECTION -->
+    <section class="team" id="team">
+        <div class="team-container">
+            <div class="section-header">
+                <div class="section-label">Our Team</div>
+                <h2 class="section-title">Meet the Leadership</h2>
+                <p class="section-description">Our leadership team combines decades of industry experience with a commitment to delivering excellence on every project.</p>
+            </div>
+            <div class="team-grid">
+                <div class="team-card">
+                    <div class="team-card-content">
+                        <div class="team-avatar">AA</div>
+                        <div class="team-info">
+                            <h3>Mr. Abbas Ali</h3>
+                            <div class="role">Chief Executive Officer</div>
+                            <p>Mr. Abbas Ali leads Pak-Tech with a strong vision for engineering excellence and technology-driven consultancy. His strategic leadership drives the firm's growth and commitment to client success.</p>
+                            <div style="margin-top: 12px; display: flex; gap: 12px; font-size: 0.85rem;">
+                                <a href="tel:+923219637215" style="color: var(--gold); display: flex; align-items: center; gap: 4px; text-decoration: none;"><i class="fas fa-phone"></i> +92 321 9637215</a>
+                                <a href="https://wa.me/923219637215" target="_blank" style="color: var(--gold); display: flex; align-items: center; gap: 4px; text-decoration: none;"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="team-card">
+                    <div class="team-card-content">
+                        <div class="team-avatar">AM</div>
+                        <div class="team-info">
+                            <h3>Awais Madni</h3>
+                            <div class="role">Director</div>
+                            <p>Awais oversees operations and client delivery at Pak-Tech, ensuring every project is executed with precision, professionalism, and measurable results.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BLOG SECTION -->
+    <section class="blog" id="blog">
+        <div class="blog-container">
+            <div class="section-header">
+                <div class="section-label">Latest Insights</div>
+                <h2 class="section-title">News & Articles</h2>
+                <p class="section-description">Stay updated with the latest trends, insights, and developments in engineering, technology, and consultancy.</p>
+            </div>
+            <div class="blog-grid">
+                <div class="blog-featured">
+                    <div class="blog-image">
+                        <i class="fas fa-newspaper"></i>
+                    </div>
+                    <div class="blog-content">
+                        <span class="blog-tag">Engineering</span>
+                        <div class="blog-date">January 15, 2025 · 5 min read</div>
+                        <h3>The Future of Engineering Consultancy in Pakistan</h3>
+                        <p>As Pakistan's infrastructure landscape evolves rapidly, engineering consultancy firms are playing an increasingly vital role in shaping smart, sustainable development.</p>
+                        <a href="#" class="service-link">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="blog-small">
+                    <div class="blog-card-small">
+                        <span class="blog-tag" style="background: rgba(201,168,76,0.2); color: var(--gold);">Technology</span>
+                        <div class="blog-date">February 8, 2025 · 4 min read</div>
+                        <h4>Why Every Business Needs a Mobile App in 2025</h4>
+                        <a href="#" class="service-link" style="font-size: 12px;">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    <div class="blog-card-small">
+                        <span class="blog-tag" style="background: rgba(201,168,76,0.2); color: var(--gold);">Infrastructure</span>
+                        <div class="blog-date">March 3, 2025 · 6 min read</div>
+                        <h4>Infrastructure Development Trends in Islamabad</h4>
+                        <a href="#" class="service-link" style="font-size: 12px;">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CLIENTS SECTION -->
+    <section class="clients" id="clients">
+        <div class="clients-container">
+            <div class="section-header">
+                <div class="section-label">Our Clients</div>
+                <h2 class="section-title">Trusted By Leading Organizations</h2>
+                <p class="section-description">We are proud to serve a diverse portfolio of clients across construction, engineering, technology, and social sectors.</p>
+            </div>
+            <div class="marquee-wrapper">
+                <div class="marquee">
+                    <div class="marquee-item">
+                        <div class="client-circle">MC</div>
+                        <p>Mac Construction Services</p>
+                    </div>
+                    <div class="marquee-item">
+                        <div class="client-circle">SS</div>
+                        <p>Shoukat & Sons Construction</p>
+                    </div>
+                    <div class="marquee-item">
+                        <div class="client-circle">SD</div>
+                        <p>Structural Designs Engineering</p>
+                    </div>
+                    <div class="marquee-item">
+                        <div class="client-circle">FE</div>
+                        <p>Fainomch Engineer Services</p>
+                    </div>
+                    <div class="marquee-item">
+                        <div class="client-circle">LS</div>
+                        <p>Learn_Swimming SMC</p>
+                    </div>
+                    <div class="marquee-item">
+                        <div class="client-circle">GM</div>
+                        <p>Geomax Services</p>
+                    </div>
+                    <div class="marquee-item">
+                        <div class="client-circle">AT</div>
+                        <p>ATS Solutions</p>
+                    </div>
+                    <div class="marquee-item">
+                        <div class="client-circle">AZ</div>
+                        <p>Ayznq Solutions</p>
+                    </div>
+                    <div class="marquee-item">
+                        <div class="client-circle">SB</div>
+                        <p>Sheikh Brothers</p>
+                    </div>
+                    <div class="marquee-item">
+                        <div class="client-circle">PC</div>
+                        <p>Prime Constructions</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- APPROACH SECTION -->
+    <section class="approach" id="approach">
+        <div class="approach-container">
+            <div class="section-header">
+                <div class="section-label">How We Work</div>
+                <h2 class="section-title">Our Approach</h2>
+            </div>
+            <div class="approach-grid desktop">
+                <div class="approach-item">
+                    <div class="approach-number">01</div>
+                    <h3>Client-Centered Expertise</h3>
+                    <p>We prioritize understanding your unique challenges and business goals, delivering tailored solutions that address your specific needs and drive measurable results.</p>
+                </div>
+                <div class="approach-divider"></div>
+                <div class="approach-item">
+                    <div class="approach-number">02</div>
+                    <h3>Comprehensive Professional Support</h3>
+                    <p>From initial consultation through project completion, our experienced team provides end-to-end support, ensuring quality at every stage of your project lifecycle.</p>
+                </div>
+                <div class="approach-divider"></div>
+                <div class="approach-item">
+                    <div class="approach-number">03</div>
+                    <h3>Experienced & Dynamic Team</h3>
+                    <p>Our leadership team combines decades of industry experience with innovative thinking, enabling us to tackle complex challenges and deliver breakthrough solutions.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section class="contact" id="contact">
+        <div class="contact-container">
+            <div class="contact-info-cards">
+                <div class="section-header" style="margin-bottom: 30px;">
+                    <div class="section-label">Get In Touch</div>
+                    <h2 class="section-title">Let's Work Together</h2>
+                    <p class="section-description">Have a project in mind or need expert consultancy? We'd love to hear from you. Reach out and let's start a conversation.</p>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <div class="contact-text">
+                        <h4>Our Office</h4>
+                        <p>Office 109, 1st Floor, Khushal Heights, E-11/2 Markaz, Islamabad, Pakistan 57400</p>
+                    </div>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div class="contact-text">
+                        <h4>Email Us</h4>
+                        <p><a href="mailto:paktechconsultants@gmail.com">paktechconsultants@gmail.com</a><br><a href="mailto:awaisabbaxi08@gmail.com">awaisabbaxi08@gmail.com</a></p>
+                    </div>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fas fa-phone"></i>
+                    </div>
+                    <div class="contact-text">
+                        <h4>Call or WhatsApp</h4>
+                        <p><a href="https://wa.me/923709440611" target="_blank">+92 370 9440611</a></p>
+                    </div>
+                </div>
+            </div>
+            <form class="contact-form" id="contact-form">
+                <h3 style="margin-bottom: 20px; color: var(--text);">Send Us a Message</h3>
+                <div class="form-group">
+                    <label for="name">Your Full Name *</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Your Email Address *</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Your Message *</label>
+                    <textarea id="message" name="message" required></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Send Message →</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-col">
+                <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
+                    <img src="pak.png" alt="Pak-Tech Logo" class="logo-img">
+                    <span style="color: #FFFFFF; font-weight: 700; font-size: 16px;">PAK-TECH</span>
+                </div>
+                <p>Pak-Tech Engineering Consultant (Pvt) Ltd is a professional consultancy firm based in Islamabad, providing engineering, technology, and business solutions since 2025.</p>
+                <div class="social-icons">
+                    <a href="https://www.facebook.com/profile.php?id=61567393365684" target="_blank" rel="noopener"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/paktechconsultants/" target="_blank" rel="noopener"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.tiktok.com/@paktechconsultants?_r=1&_t=ZS-95meR1f7ZAb" target="_blank" rel="noopener"><i class="fab fa-tiktok"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <a href="#home">Home</a>
+                <a href="#about">About</a>
+                <a href="#services">Services</a>
+                <a href="#team">Team</a>
+                <a href="#blog">Blog</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <div class="footer-col">
+                <h4>Contact Info</h4>
+                <p><strong>Email:</strong> paktechconsultants@gmail.com</p>
+                <p><strong>Phone:</strong> +92 370 9440611</p>
+                <p><strong>Address:</strong> Office 109, Khushal Heights, Islamabad</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Pak-Tech Engineering Consultant (Pvt) Ltd. All Rights Reserved.</p>
+            <a href="admin/index.html" style="
+  display: inline-block;
+  margin-top: 10px;
+  color: rgba(201, 168, 76, 0.3);
+  font-size: 11px;
+  text-decoration: none;
+  letter-spacing: 1px;
+  transition: color 0.3s ease;
+" onmouseover="this.style.color='rgba(201,168,76,0.8)'" onmouseout="this.style.color='rgba(201,168,76,0.3)'">
+  ⚙ Admin
+</a>
+        </div>
+    </footer>
+
+    <!-- FLOATING BUTTONS -->
+    <a href="https://wa.me/923709440611" target="_blank" class="whatsapp-btn" title="Chat on WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+    <button class="back-to-top" id="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <script>
+        // SERVICE DRAWER DATA
+        const services = {
+            service1: {
+                title: 'Human Resource Management',
+                content: 'Our HR Management services provide end-to-end support for your workforce needs. We cover recruitment and selection, HR policy formulation, payroll processing, performance management systems, training and development programs, and full compliance with Pakistan\'s labor laws. We help organizations build strong, productive teams.'
+            },
+            service2: {
+                title: 'Accountancy & Audit Services',
+                content: 'We offer comprehensive accountancy and audit services including ledger maintenance, bank reconciliations, accounts payable and receivable management, cash flow planning, and independent financial audits. All our work complies with International Accounting Standards applicable in Pakistan, giving you complete confidence in your financials.'
+            },
+            service3: {
+                title: 'Information Technology Consulting',
+                content: 'Our IT consulting team helps businesses navigate digital transformation with confidence. Services include IT strategy development, system architecture design, software selection and implementation, cybersecurity advisory, cloud migration planning, and ongoing IT support — all tailored to your specific business environment and goals.'
+            },
+            service4: {
+                title: 'Financial & Management Services',
+                content: 'We provide strategic financial and management services including financial planning and analysis, budgeting and forecasting, cost optimization, management reporting, financial modeling, and investment appraisal. Our advisors work closely with your leadership team to drive profitability and sustainable growth.'
+            },
+            service5: {
+                title: 'Corporate & Non-Profit Advisory',
+                content: 'Our advisory services are designed for both corporate entities and non-profit organizations. We assist with corporate governance frameworks, board advisory, regulatory compliance, organizational restructuring, strategic planning, and capacity building — helping your organization operate with clarity, accountability, and purpose.'
+            },
+            service6: {
+                title: 'Social Sectors R&D Support',
+                content: 'We provide specialized research and development support for social sector initiatives. Our services include social research design, project appraisal and design, monitoring and evaluation frameworks, development sector consultancy, donor report writing, stakeholder engagement, and support for NGO and government-funded programs.'
+            },
+            service7: {
+                title: 'Web Development',
+                content: 'We design and develop professional websites that make an impact. From corporate websites and landing pages to full e-commerce platforms and web applications, we deliver clean code, fast load times, mobile-first design, and SEO best practices. Every website we build is tailored to reflect your brand and convert visitors into clients.'
+            },
+            service8: {
+                title: 'Mobile App Development',
+                content: 'We build powerful, user-friendly mobile applications for Android and iOS platforms. Our process covers everything from UI/UX design and development to API integration, quality testing, and app store submission. Whether you need a business tool, client-facing app, or a full platform — we bring your idea to life.'
+            }
+        };
+
+        function openServiceDrawer(serviceKey) {
+            const service = services[serviceKey];
+            document.getElementById('drawer-title').textContent = service.title;
+            document.getElementById('drawer-content').innerHTML = `<p>${service.content}</p>`;
+            document.getElementById('service-drawer').classList.add('active');
+            document.getElementById('drawer-overlay').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeServiceDrawer() {
+            document.getElementById('service-drawer').classList.remove('active');
+            document.getElementById('drawer-overlay').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // NAVBAR SCROLL EFFECT
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+
+            // Back to top button
+            const backToTop = document.getElementById('back-to-top');
+            if (window.scrollY > 300) {
+                backToTop.classList.add('show');
+            } else {
+                backToTop.classList.remove('show');
+            }
+
+            // Update active nav link
+            updateActiveNavLink();
+        });
+
+        function updateActiveNavLink() {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.nav-link');
+
+            let currentSection = '';
+            sections.forEach(section => {
+                const rect = section.getBoundingClientRect();
+                if (rect.top <= 150) {
+                    currentSection = section.id;
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').slice(1) === currentSection) {
+                    link.classList.add('active');
+                }
+            });
+        }
+
+        // HAMBURGER MENU
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('nav-menu');
+
+        hamburger.addEventListener('click', () => {
+            if (window.innerWidth <= 768) {
+                navMenu.style.display = navMenu.style.display === 'flex' ? 'none' : 'flex';
+            }
+        });
+
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth <= 768) {
+                    navMenu.style.display = 'none';
+                }
+            });
+        });
+
+        // Reset nav menu on window resize
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 768) {
+                navMenu.style.display = '';
+            }
+        });
+
+        // STAT COUNTER ANIMATION
+        const observerOptions = {
+            threshold: 0.5
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const counters = entry.target.querySelectorAll('.stat-count');
+                    counters.forEach(counter => {
+                        const target = parseInt(counter.getAttribute('data-target'));
+                        animateCounter(counter, target);
+                    });
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        const statsBar = document.querySelector('.stats-bar');
+        if (statsBar) observer.observe(statsBar);
+
+        function animateCounter(element, target) {
+            let current = 0;
+            const increment = target / 30;
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    element.textContent = target;
+                    clearInterval(timer);
+                } else {
+                    element.textContent = Math.floor(current);
+                }
+            }, 30);
+        }
+
+        // FADE IN ON SCROLL
+        const fadeInObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-up');
+                    fadeInObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.service-card, .team-card, .blog-card-small, .approach-item, .contact-card').forEach(el => {
+            fadeInObserver.observe(el);
+        });
+
+        // HELPER FUNCTIONS
+        function formatDate(dateString) {
+            return new Date(dateString).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+        }
+
+        async function apiFetch(url) {
+            try {
+                const res = await fetch(url);
+                if (!res.ok) throw new Error('API error');
+                return await res.json();
+            } catch(e) {
+                console.error('API error:', e);
+                return null;
+            }
+        }
+
+        // LOAD BLOG POSTS
+        async function loadBlogPosts() {
+            const data = await apiFetch('http://localhost:5000/api/blog');
+            if (data && data.posts && data.posts.length > 0) {
+                const featured = data.posts[0];
+                const small = data.posts.slice(1, 3);
+
+                document.querySelector('.blog-featured').innerHTML = `
+                    <div class="blog-image">
+                        <i class="fas fa-newspaper"></i>
+                    </div>
+                    <div class="blog-content">
+                        <span class="blog-tag">${featured.category}</span>
+                        <div class="blog-date">${formatDate(featured.created_at)} · ${featured.read_time}</div>
+                        <h3>${featured.title}</h3>
+                        <p>${featured.excerpt}</p>
+                        <a href="#" class="service-link">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                `;
+
+                const blogSmall = document.querySelector('.blog-small');
+                blogSmall.innerHTML = '';
+                small.forEach(post => {
+                    blogSmall.innerHTML += `
+                        <div class="blog-card-small">
+                            <span class="blog-tag" style="background: rgba(201,168,76,0.2); color: var(--gold);">${post.category}</span>
+                            <div class="blog-date">${formatDate(post.created_at)} · ${post.read_time}</div>
+                            <h4>${post.title}</h4>
+                            <a href="#" class="service-link" style="font-size: 12px;">Read More <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    `;
+                });
+            }
+        }
+
+        // LOAD CLIENTS
+        async function loadClients() {
+            const data = await apiFetch('http://localhost:5000/api/clients');
+            if (data && data.clients && data.clients.length > 0) {
+                let marqueeHtml = '';
+                data.clients.forEach(client => {
+                    marqueeHtml += `
+                        <div class="marquee-item">
+                            <div class="client-circle">${client.initials}</div>
+                            <p>${client.name}</p>
+                        </div>
+                    `;
+                });
+
+                const marquee = document.querySelector('.marquee');
+                marquee.innerHTML = marqueeHtml + marqueeHtml;
+            }
+        }
+
+        // LOAD TEAM
+        async function loadTeam() {
+            const data = await apiFetch('http://localhost:5000/api/team');
+            if (data && data.team && data.team.length > 0) {
+                const teamGrid = document.querySelector('.team-grid');
+                teamGrid.innerHTML = '';
+
+                data.team.forEach(member => {
+                    teamGrid.innerHTML += `
+                        <div class="team-card">
+                            <div class="team-card-content">
+                                <div class="team-avatar">${member.initials}</div>
+                                <div class="team-info">
+                                    <h3>${member.name}</h3>
+                                    <div class="role">${member.title}</div>
+                                    <p>${member.bio}</p>
+                                    <div style="margin-top: 12px; display: flex; gap: 12px; font-size: 0.85rem;">
+                                        ${member.phone ? `<a href="tel:${member.phone}" style="color: var(--gold); display: flex; align-items: center; gap: 4px; text-decoration: none;"><i class="fas fa-phone"></i> ${member.phone}</a>` : ''}
+                                        ${member.whatsapp ? `<a href="https://wa.me/${member.whatsapp}" target="_blank" style="color: var(--gold); display: flex; align-items: center; gap: 4px; text-decoration: none;"><i class="fab fa-whatsapp"></i> WhatsApp</a>` : ''}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                });
+            }
+        }
+
+        // CONTACT FORM
+        document.getElementById('contact-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const message = document.getElementById('message').value.trim();
+            const btn = e.target.querySelector('.submit-btn');
+            const originalText = btn.innerHTML;
+
+            if (name && email && message) {
+                btn.disabled = true;
+                btn.innerHTML = 'Sending...';
+
+                try {
+                    const res = await fetch('http://localhost:5000/api/contact', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ name, email, message })
+                    });
+
+                    if (res.ok) {
+                        showMessage('Thank you! Your message has been sent. We\'ll get back to you shortly.', 'success');
+                        document.getElementById('contact-form').reset();
+                    } else {
+                        showMessage('Something went wrong. Please try again.', 'error');
+                    }
+                } catch (err) {
+                    showMessage('Something went wrong. Please try again.', 'error');
+                } finally {
+                    btn.disabled = false;
+                    btn.innerHTML = originalText;
+                }
+            }
+        });
+
+        function showMessage(text, type) {
+            const div = document.createElement('div');
+            div.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                padding: 16px 24px;
+                background: ${type === 'success' ? '#4CAF50' : '#F44336'};
+                color: white;
+                border-radius: 4px;
+                z-index: 9999;
+                font-weight: 500;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            `;
+            div.textContent = text;
+            document.body.appendChild(div);
+            setTimeout(() => div.remove(), 4000);
+        }
+
+        // LOAD ALL DATA ON DOM LOAD
+        document.addEventListener('DOMContentLoaded', () => {
+            loadBlogPosts();
+            loadClients();
+            loadTeam();
+        });
+
+        // CLOSE DRAWER ON ESC
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeServiceDrawer();
+            }
+        });
+    </script>
+</body>
+</html>
