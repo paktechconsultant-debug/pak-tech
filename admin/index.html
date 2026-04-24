@@ -902,24 +902,49 @@
             .top-bar {
                 flex-wrap: wrap;
                 gap: 10px;
+                padding: 15px 20px;
             }
 
             .page-title {
                 order: 2;
                 flex-basis: 100%;
+                font-size: 18px;
+            }
+
+            .page-date {
+                font-size: 11px;
             }
 
             .view-website-btn {
                 order: 3;
                 width: 100%;
+                padding: 10px 15px;
+                font-size: 13px;
             }
 
             .content-area {
-                padding: 20px;
+                padding: 15px;
             }
 
             .stats-grid {
                 grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .stat-card {
+                padding: 16px;
+            }
+
+            .stat-number {
+                font-size: 28px;
+            }
+
+            .stat-label {
+                font-size: 12px;
+            }
+
+            .stat-icon {
+                font-size: 28px;
             }
 
             .form-row {
@@ -932,7 +957,20 @@
 
             .modal-content {
                 width: 95%;
-                max-height: 95vh;
+                max-height: 90vh;
+                padding: 20px;
+            }
+
+            .modal-header {
+                margin-bottom: 15px;
+            }
+
+            .modal-title {
+                font-size: 18px;
+            }
+
+            .modal-close {
+                font-size: 20px;
             }
 
             .table-container {
@@ -940,12 +978,120 @@
             }
 
             table {
-                min-width: 500px;
+                font-size: 13px;
+            }
+
+            th, td {
+                padding: 12px 8px;
+            }
+
+            .btn-sm {
+                padding: 5px 10px;
+                font-size: 11px;
+            }
+
+            .btn-icon {
+                padding: 6px 10px;
+                font-size: 14px;
             }
 
             .toast {
                 min-width: calc(100vw - 40px);
-                max-width: 400px;
+                max-width: 350px;
+                padding: 12px 16px;
+                font-size: 13px;
+            }
+
+            .form-group label {
+                font-size: 12px;
+            }
+
+            .form-group input,
+            .form-group textarea,
+            .form-group select {
+                font-size: 14px;
+                padding: 8px 10px;
+            }
+
+            .card {
+                padding: 16px;
+            }
+
+            .card-icon {
+                font-size: 40px;
+            }
+
+            .card-title {
+                font-size: 14px;
+            }
+
+            .card-meta {
+                font-size: 11px;
+            }
+
+            .sidebar-logo {
+                font-size: 18px;
+                margin-bottom: 20px;
+            }
+
+            .nav-item {
+                padding: 10px 12px;
+                margin-bottom: 6px;
+                font-size: 13px;
+            }
+
+            .nav-item i {
+                width: 18px;
+                margin-right: 10px;
+            }
+
+            .user-email {
+                font-size: 11px;
+            }
+
+            .logout-btn {
+                padding: 8px;
+                font-size: 12px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .sidebar {
+                width: 75%;
+            }
+
+            .stats-grid {
+                gap: 12px;
+            }
+
+            .stat-card {
+                padding: 14px;
+            }
+
+            .stat-number {
+                font-size: 24px;
+            }
+
+            .page-title {
+                font-size: 16px;
+            }
+
+            .view-website-btn {
+                font-size: 12px;
+                padding: 9px 12px;
+            }
+
+            .modal-content {
+                padding: 16px;
+            }
+
+            table {
+                min-width: 100%;
+                font-size: 12px;
+            }
+
+            .card {
+                padding: 14px;
             }
         }
 
@@ -959,21 +1105,217 @@
             }
 
             .stat-card {
-                padding: 15px;
+                padding: 12px;
             }
 
             .stat-number {
+                font-size: 20px;
+                margin-bottom: 3px;
+            }
+
+            .stat-icon {
                 font-size: 24px;
+                margin-bottom: 8px;
+            }
+
+            .stat-label {
+                font-size: 11px;
+            }
+
+            .page-title {
+                font-size: 16px;
+            }
+
+            .content-area {
+                padding: 12px;
             }
 
             .modal-content {
-                padding: 20px;
+                padding: 16px;
+                max-height: 85vh;
+            }
+
+            .modal-header {
+                margin-bottom: 12px;
+            }
+
+            .modal-title {
+                font-size: 16px;
             }
 
             .form-group input,
             .form-group textarea,
             .form-group select {
                 font-size: 16px;
+                padding: 10px 8px;
+            }
+
+            .btn {
+                padding: 9px 14px;
+                font-size: 12px;
+            }
+
+            .btn-primary {
+                min-height: 44px;
+            }
+
+            table {
+                font-size: 11px;
+                min-width: 100%;
+            }
+
+            th, td {
+                padding: 10px 6px;
+            }
+
+            .btn-sm {
+                padding: 5px 8px;
+                font-size: 10px;
+                min-height: 36px;
+            }
+
+            .btn-icon {
+                padding: 5px 8px;
+                font-size: 13px;
+                min-height: 36px;
+            }
+
+            .toast {
+                min-width: calc(100vw - 30px);
+                max-width: 320px;
+                bottom: 15px;
+                right: 15px;
+                padding: 11px 14px;
+            }
+
+            .confirm-content {
+                padding: 20px;
+            }
+
+            .confirm-title {
+                font-size: 16px;
+            }
+
+            .confirm-message {
+                font-size: 13px;
+            }
+
+            .card {
+                padding: 12px;
+            }
+
+            .card-title {
+                font-size: 13px;
+            }
+
+            .sidebar-logo {
+                font-size: 16px;
+            }
+
+            .nav-item {
+                padding: 9px 10px;
+                font-size: 12px;
+            }
+
+            .top-bar-left {
+                gap: 2px;
+            }
+        }
+
+        @media (max-width: 375px) {
+            .page-title {
+                font-size: 15px;
+            }
+
+            .view-website-btn {
+                width: 100%;
+                font-size: 11px;
+            }
+
+            .stat-card {
+                padding: 10px;
+            }
+
+            .stat-number {
+                font-size: 18px;
+            }
+
+            .stat-label {
+                font-size: 10px;
+            }
+
+            table {
+                font-size: 10px;
+            }
+
+            th, td {
+                padding: 8px 4px;
+            }
+
+            .btn {
+                padding: 8px 12px;
+                font-size: 11px;
+            }
+
+            .modal-title {
+                font-size: 15px;
+            }
+
+            .form-group label {
+                font-size: 11px;
+            }
+        }
+
+        @media (max-width: 320px) {
+            .sidebar {
+                width: 100%;
+            }
+
+            .page-title {
+                font-size: 14px;
+            }
+
+            .content-area {
+                padding: 10px;
+            }
+
+            .stats-grid {
+                gap: 8px;
+            }
+
+            .stat-card {
+                padding: 10px;
+            }
+
+            .stat-number {
+                font-size: 16px;
+            }
+
+            .stat-icon {
+                font-size: 20px;
+            }
+
+            .btn {
+                padding: 8px 10px;
+                font-size: 10px;
+            }
+
+            .modal-content {
+                padding: 12px;
+                width: 98%;
+            }
+
+            table {
+                font-size: 9px;
+            }
+
+            th, td {
+                padding: 6px 3px;
+            }
+
+            .nav-item {
+                padding: 8px 8px;
+                font-size: 11px;
             }
         }
     </style>
