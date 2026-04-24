@@ -2280,7 +2280,7 @@
 
         // LOAD BLOG POSTS
         async function loadBlogPosts() {
-            const data = await apiFetch('http://localhost:5000/api/blog');
+            const data = await apiFetch('https://pak-tech-production.up.railway.app/api/blog');
             if (data && data.posts && data.posts.length > 0) {
                 const featured = data.posts[0];
                 const small = data.posts.slice(1, 3);
@@ -2315,7 +2315,7 @@
 
         // LOAD CLIENTS
         async function loadClients() {
-            const data = await apiFetch('http://localhost:5000/api/clients');
+            const data = await apiFetch('https://pak-tech-production.up.railway.app/api/clients');
             if (data && data.clients && data.clients.length > 0) {
                 let marqueeHtml = '';
                 data.clients.forEach(client => {
@@ -2334,7 +2334,7 @@
 
         // LOAD TEAM
         async function loadTeam() {
-            const data = await apiFetch('http://localhost:5000/api/team');
+            const data = await apiFetch('https://pak-tech-production.up.railway.app/api/team');
             if (data && data.team && data.team.length > 0) {
                 const teamGrid = document.querySelector('.team-grid');
                 teamGrid.innerHTML = '';
@@ -2374,7 +2374,7 @@
                 btn.innerHTML = 'Sending...';
 
                 try {
-                    const res = await fetch('http://localhost:5000/api/contact', {
+                    const res = await fetch('https://pak-tech-production.up.railway.app/api/contact', {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify({ name, email, message })
