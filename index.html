@@ -2762,7 +2762,7 @@
                         <div class="blog-date">January 15, 2025 · 5 min read</div>
                         <h3>The Future of Engineering Consultancy in Pakistan</h3>
                         <p>As Pakistan's infrastructure landscape evolves rapidly, engineering consultancy firms are playing an increasingly vital role in shaping smart, sustainable development.</p>
-                        <a href="#" class="service-link">Read More <i class="fas fa-arrow-right"></i></a>
+                        <a href="javascript:void(0)" class="service-link" onclick="event.preventDefault();">Read More <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
                 <div class="blog-small">
@@ -2770,13 +2770,13 @@
                         <span class="blog-tag" style="background: rgba(201,168,76,0.2); color: var(--gold);">Technology</span>
                         <div class="blog-date">February 8, 2025 · 4 min read</div>
                         <h4>Why Every Business Needs a Mobile App in 2025</h4>
-                        <a href="#" class="service-link" style="font-size: 12px;">Read More <i class="fas fa-arrow-right"></i></a>
+                        <a href="javascript:void(0)" class="service-link" style="font-size: 12px;" onclick="event.preventDefault();">Read More <i class="fas fa-arrow-right"></i></a>
                     </div>
                     <div class="blog-card-small">
                         <span class="blog-tag" style="background: rgba(201,168,76,0.2); color: var(--gold);">Infrastructure</span>
                         <div class="blog-date">March 3, 2025 · 6 min read</div>
                         <h4>Infrastructure Development Trends in Islamabad</h4>
-                        <a href="#" class="service-link" style="font-size: 12px;">Read More <i class="fas fa-arrow-right"></i></a>
+                        <a href="javascript:void(0)" class="service-link" style="font-size: 12px;" onclick="event.preventDefault();">Read More <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
             </div>
@@ -3194,7 +3194,7 @@
                         <div class="blog-date">${formatDate(featured.created_at)} · ${featured.read_time}</div>
                         <h3>${featured.title}</h3>
                         <p>${featured.excerpt}</p>
-                        <a href="javascript:void(0)" class="service-link" onclick="openBlogPost('${featured.slug}')">Read More <i class="fas fa-arrow-right"></i></a>
+                        <a href="javascript:void(0)" class="service-link" onclick="event.preventDefault(); openBlogPost('${featured.slug}')">Read More <i class="fas fa-arrow-right"></i></a>
                     </div>
                 `;
 
@@ -3206,7 +3206,7 @@
                             <span class="blog-tag" style="background: rgba(201,168,76,0.2); color: var(--gold);">${post.category}</span>
                             <div class="blog-date">${formatDate(post.created_at)} · ${post.read_time}</div>
                             <h4>${post.title}</h4>
-                            <a href="javascript:void(0)" class="service-link" style="font-size: 12px;" onclick="openBlogPost('${post.slug}')">Read More <i class="fas fa-arrow-right"></i></a>
+                            <a href="javascript:void(0)" class="service-link" style="font-size: 12px;" onclick="event.preventDefault(); openBlogPost('${post.slug}')">Read More <i class="fas fa-arrow-right"></i></a>
                         </div>
                     `;
                 });
